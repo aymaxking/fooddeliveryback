@@ -1,43 +1,48 @@
 package com.blackhole.fooddelivery.demo.domaine.converter;
 
 import com.blackhole.fooddelivery.demo.domaine.vo.RoleVo;
+import com.blackhole.fooddelivery.demo.domaine.vo.SubMenuVo;
 import com.blackhole.fooddelivery.demo.service.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SubMenuConverter {
-    public static RoleVo toVo(SubMenu bo) {
+    public static SubMenuVo toVo(SubMenu bo) {
         if (bo == null)
             return null;
-        SubMenu vo = new SubMenu();
+        SubMenuVo vo = new SubMenuVo();
         vo.setId(bo.getId());
-        vo.setRole(bo.getRole());
+        vo.setImg(bo.getImg());
+        vo.setPrice(bo.getPrice());
+        vo.setTitle(bo.getTitle());
         return vo;
     }
-    public static Role toBo(RoleVo vo) {
+    public static SubMenu toBo(SubMenuVo vo) {
         if (vo == null)
             return null;
-        Role bo = new Role();
+        SubMenu bo = new SubMenu();
         bo.setId(vo.getId());
-        bo.setRole(vo.getRole());
+        bo.setImg(vo.getImg());
+        bo.setPrice(vo.getPrice());
+        bo.setTitle(vo.getTitle());
         return bo;
     }
-    public static List<RoleVo> toVoList(List<Role> boList) {
+    public static List<SubMenuVo> toVoList(List<SubMenu> boList) {
         if (boList == null || boList.isEmpty())
             return null;
-        List<RoleVo> voList = new ArrayList<>();
-        for (Role role : boList) {
-            voList.add(toVo(role));
+        List<SubMenuVo> voList = new ArrayList<>();
+        for (SubMenu subMenu : boList) {
+            voList.add(toVo(subMenu));
         }
         return voList;
     }
-    public static List<Role> toBoList(List<RoleVo> voList) {
+    public static List<SubMenu> toBoList(List<SubMenuVo> voList) {
         if (voList == null || voList.isEmpty())
             return null;
-        List<Role> boList = new ArrayList<>();
-        for (RoleVo roleVo : voList) {
-            boList.add(toBo(roleVo));
+        List<SubMenu> boList = new ArrayList<>();
+        for (SubMenuVo subMenuVo: voList) {
+            boList.add(toBo(subMenuVo));
         }
         return boList;
     }

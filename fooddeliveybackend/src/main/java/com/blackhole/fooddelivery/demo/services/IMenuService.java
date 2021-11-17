@@ -1,13 +1,14 @@
 package com.blackhole.fooddelivery.demo.services;
 
-import com.blackhole.fooddelivery.demo.service.model.Menu;
+import com.blackhole.fooddelivery.demo.domaine.vo.CategoryVo;
+import com.blackhole.fooddelivery.demo.domaine.vo.MenuVo;
 
 import java.util.List;
 
 public interface IMenuService {
-    Menu getById(Long id);
-    List<Menu> getAll();
-    void create(Menu menu);
-    void update(Long id,Menu menu);
+    MenuVo getById(Long id);
+    List<MenuVo> getAllMenus();
+    void save(MenuVo menu);
+    void update(Long id,MenuVo menu);
     void delete(Long id);
 }

@@ -1,13 +1,14 @@
 package com.blackhole.fooddelivery.demo.services;
 
-import com.blackhole.fooddelivery.demo.service.model.SubMenu;
+import com.blackhole.fooddelivery.demo.domaine.vo.RoleVo;
+import com.blackhole.fooddelivery.demo.domaine.vo.SubMenuVo;
 
 import java.util.List;
 
 public interface ISubMenuService {
-    SubMenu getById(Long id);
-    List<SubMenu> getAll();
-    void create(SubMenu subMenu);
-    void update(Long id,SubMenu subMenu);
+    SubMenuVo getById(Long id);
+    List<SubMenuVo> getAllSubMenu();
+    void save(SubMenuVo subMenu);
+    void update(Long id,SubMenuVo subMenu);
     void delete(Long id);
 }

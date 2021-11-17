@@ -1,13 +1,14 @@
 package com.blackhole.fooddelivery.demo.services;
 
-import com.blackhole.fooddelivery.demo.service.model.Type;
+import com.blackhole.fooddelivery.demo.domaine.vo.SubMenuVo;
+import com.blackhole.fooddelivery.demo.domaine.vo.TypeVo;
 
 import java.util.List;
 
 public interface ITypeService {
-    Type getById(Long id);
-    List<Type> getAll();
-    void create(Type type);
-    void update(Long id,Type type);
+    TypeVo getById(Long id);
+    List<TypeVo> getAllSubTypes();
+    void save(TypeVo type);
+    void update(Long id,TypeVo type);
     void delete(Long id);
 }
