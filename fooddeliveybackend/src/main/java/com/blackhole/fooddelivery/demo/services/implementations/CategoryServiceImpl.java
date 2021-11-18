@@ -22,7 +22,8 @@ public class CategoryServiceImpl implements ICategoryService {
         boolean trouve = categoryRepository.existsById(id);
         if (!trouve)
             return null;
-        return CategoryConverter.toVo(categoryRepository.getOne(id));     }
+        return CategoryConverter.toVo(categoryRepository.getOne(id));
+    }
 
     @Override
     public List<CategoryVo> getAllCategorys() {
@@ -37,11 +38,12 @@ public class CategoryServiceImpl implements ICategoryService {
 
     @Override
     public void update(Long id, CategoryVo category) {
-
+        category.setId(id);
+        categoryRepository.save(CategoryConverter.toBo(category));
     }
 
     @Override
     public void delete(Long id) {
-
+        categoryRepository.deleteById(id);
     }
 }

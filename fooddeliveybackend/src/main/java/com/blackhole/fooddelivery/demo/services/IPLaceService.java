@@ -11,4 +11,8 @@ public interface IPLaceService {
     void save(PlaceVo place);
     void update(Long id,PlaceVo place);
     void delete(Long id);
+    List<PlaceVo> findByTitle(String title);
+    List<PlaceVo> findAll(int pageId, int size);
+    List<PlaceVo> sortBy(String fieldName);
+
 }

@@ -1,7 +1,9 @@
 package com.blackhole.fooddelivery.demo.domaine.converter;
 
+import com.blackhole.fooddelivery.demo.domaine.vo.PlaceVo;
 import com.blackhole.fooddelivery.demo.domaine.vo.RoleVo;
 import com.blackhole.fooddelivery.demo.domaine.vo.SubMenuVo;
+import com.blackhole.fooddelivery.demo.service.model.Place;
 import com.blackhole.fooddelivery.demo.service.model.Role;
 import com.blackhole.fooddelivery.demo.service.model.SubMenu;
 
@@ -9,37 +11,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlaceConverter {
-    public static RoleVo toVo(Role bo) {
+    public static PlaceVo toVo(Place bo) {
         if (bo == null)
             return null;
-        RoleVo vo = new RoleVo();
+        PlaceVo vo = new PlaceVo();
         vo.setId(bo.getId());
-        vo.setRole(bo.getRole());
+        vo.setDescription(bo.getDescription());
+        vo.setImg(bo.getImg());
+        vo.setTitle(bo.getTitle());
         return vo;
     }
-    public static Role toBo(RoleVo vo) {
+    public static Place toBo(PlaceVo vo) {
         if (vo == null)
             return null;
-        Role bo = new Role();
+        Place bo = new Place();
         bo.setId(vo.getId());
-        bo.setRole(vo.getRole());
+        bo.setDescription(vo.getDescription());
+        bo.setImg(vo.getImg());
+        bo.setTitle(vo.getTitle());
         return bo;
     }
-    public static List<RoleVo> toVoList(List<Role> boList) {
+    public static List<PlaceVo> toVoList(List<Place> boList) {
         if (boList == null || boList.isEmpty())
             return null;
-        List<RoleVo> voList = new ArrayList<>();
-        for (Role role : boList) {
-            voList.add(toVo(role));
+        List<PlaceVo> voList = new ArrayList<>();
+        for (Place place : boList) {
+            voList.add(toVo(place));
         }
         return voList;
     }
-    public static List<Role> toBoList(List<RoleVo> voList) {
+    public static List<Place> toBoList(List<PlaceVo> voList) {
         if (voList == null || voList.isEmpty())
             return null;
-        List<Role> boList = new ArrayList<>();
-        for (RoleVo roleVo: voList) {
-            boList.add(toBo(roleVo));
+        List<Place> boList = new ArrayList<>();
+        for (PlaceVo placeVo: voList) {
+            boList.add(toBo(placeVo));
         }
         return boList;
     }
