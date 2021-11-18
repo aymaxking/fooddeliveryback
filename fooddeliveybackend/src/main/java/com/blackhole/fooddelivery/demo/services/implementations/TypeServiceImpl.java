@@ -34,7 +34,6 @@ public class TypeServiceImpl implements ITypeService {
     @Override
     public void save(TypeVo type) {
         typeRepository.save(TypeConverter.toBo(type));
-
     }
 
     @Override

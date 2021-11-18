@@ -1,8 +1,13 @@
 package com.blackhole.fooddelivery.demo.services.implementations;
 
 import com.blackhole.fooddelivery.demo.dao.CategoryRepository;
+import com.blackhole.fooddelivery.demo.dao.TypeRepository;
 import com.blackhole.fooddelivery.demo.domaine.converter.CategoryConverter;
+import com.blackhole.fooddelivery.demo.domaine.converter.RoleConverter;
+import com.blackhole.fooddelivery.demo.domaine.converter.TypeConverter;
 import com.blackhole.fooddelivery.demo.domaine.vo.CategoryVo;
+import com.blackhole.fooddelivery.demo.domaine.vo.RoleVo;
+import com.blackhole.fooddelivery.demo.domaine.vo.TypeVo;
 import com.blackhole.fooddelivery.demo.service.model.Category;
 import com.blackhole.fooddelivery.demo.services.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +21,8 @@ import java.util.List;
 public class CategoryServiceImpl implements ICategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    private TypeRepository typeRepository;
 
     @Override
     public CategoryVo getById(Long id) {
@@ -45,5 +52,10 @@ public class CategoryServiceImpl implements ICategoryService {
     @Override
     public void delete(Long id) {
         categoryRepository.deleteById(id);
+    }
+
+    @Override
+    public List<TypeVo> getAllTypes() {
+        return TypeConverter.toVoList(typeRepository.findAll());
     }
 }
