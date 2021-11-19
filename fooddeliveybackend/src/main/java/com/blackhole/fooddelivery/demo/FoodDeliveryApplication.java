@@ -45,18 +45,29 @@ public class FoodDeliveryApplication implements CommandLineRunner {
         userService.cleanDataBase();
         userService.save(new RoleVo("ADMIN"));
         userService.save(new RoleVo("CLIENT"));
+        userService.save(new RoleVo("PLACE"));
+        userService.save(new RoleVo("DELIVERY"));
         RoleVo roleAdmin = userService.getRoleByName("ADMIN");
         RoleVo roleClient = userService.getRoleByName("CLIENT");
+        RoleVo rolePlace = userService.getRoleByName("PLACE");
+        RoleVo roleDelivery = userService.getRoleByName("DELIVERY");
+
         UserVo admin1 = new UserVo("admin1@gmail.com", "admin1", Arrays.asList(roleAdmin));
         UserVo client1 = new UserVo("client1@gmail.com", "client1", Arrays.asList(roleClient));
+        UserVo place1 = new UserVo("place1@gmail.com", "place1", Arrays.asList(roleClient));
+        UserVo delivery1 = new UserVo("delivery1@gmail.com", "delivery1", Arrays.asList(roleClient));
         userService.save(admin1);
         userService.save(client1);
-        // *************
-//        CategoryVo category =new CategoryVo("Meals");
-//
+        userService.save(place1);
+        userService.save(delivery1);
+
+
         categoryService.save(new CategoryVo("Meals",null));
         categoryService.save(new CategoryVo("Drinks",null));
         categoryService.save(new CategoryVo("Dessert",null));
+
+
+
 //        categoryService.save(category);
 //
 //

@@ -20,19 +20,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "rest/places")
 public class PlaceController {
 
     @Autowired
     IPLaceService service;
 
-    @GetMapping(value = "/places", produces = {MediaType.APPLICATION_XML_VALUE,
+    @GetMapping(produces = {MediaType.APPLICATION_XML_VALUE,
             MediaType.APPLICATION_JSON_VALUE})
     public List<PlaceVo> getAll() {
         return service.getAll();
     }
 
 
-    @GetMapping(value = "/places/{id}", produces = {MediaType.APPLICATION_XML_VALUE,
+    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_XML_VALUE,
             MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Object> getById(@PathVariable(value = "id") Long VoId) {
         PlaceVo VoFound = service.getById(VoId);
@@ -41,7 +42,7 @@ public class PlaceController {
         return new ResponseEntity<>(VoFound, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/places")
+    @PostMapping
     public ResponseEntity<Object> createEmp(@Validated @RequestBody PlaceVo Vo) {
         service.save(Vo);
         return new ResponseEntity<>("place is created successfully",
@@ -49,7 +50,7 @@ public class PlaceController {
     }
 
 
-    @PutMapping(value = "/places/{id}")
+    @PutMapping(value = "/{id}")
     public ResponseEntity<Object> updateEmp(@PathVariable(name = "id") Long VoId,
                                             @RequestBody PlaceVo Vo) {
         PlaceVo VoFound = service.getById(VoId);
@@ -62,7 +63,7 @@ public class PlaceController {
     }
 
 
-    @DeleteMapping(value = "/places/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<Object> deleteEmp(@PathVariable(name = "id") Long VoId) {
         PlaceVo VoFound = service.getById(VoId);
         if (VoFound == null)

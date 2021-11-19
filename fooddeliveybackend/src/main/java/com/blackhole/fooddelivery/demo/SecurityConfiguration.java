@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -29,32 +30,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
         http.authorizeRequests().
-                antMatchers("/categories").permitAll().
-                antMatchers("/").permitAll().
-                antMatchers("/places").permitAll().
-                antMatchers("/login").permitAll().
-                antMatchers("/types").permitAll().
-                antMatchers("/users").permitAll().
-                antMatchers("/menus").permitAll()
-                .anyRequest().authenticated();
-//        http.authorizeRequests().
-//                antMatchers("/").permitAll().
-//                antMatchers("/login").permitAll();
-//                antMatchers("/welcome").hasAnyAuthority("ADMIN","CLIENT").
-//                antMatchers("/admin/**").hasAuthority("ADMIN").
-//                antMatchers("/places/**").hasAuthority("CLIENT");
-//                anyRequest().authenticated().
-//                and().csrf().disable().
-//                formLogin().loginPage("/login").
-//                failureUrl("/login?error=true").
-//                defaultSuccessUrl("/welcome").
-//                usernameParameter("username").
-//                passwordParameter("password").
-//                and().logout().logoutRequestMatcher(new
-//                        AntPathRequestMatcher("/logout")).logoutSuccessUrl("/").
-//                and().exceptionHandling().accessDeniedPage("/access-denied");
+                antMatchers("/rest/**").permitAll();
+
+        // hasAuthority("ADMIN")
+
 
     }
+
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/resources/**", "/static/**", "/css/**", "/js/**",

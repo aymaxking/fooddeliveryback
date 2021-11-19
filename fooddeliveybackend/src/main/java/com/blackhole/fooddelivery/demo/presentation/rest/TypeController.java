@@ -14,12 +14,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/rest/types")
 public class TypeController {
 
     @Autowired
     ITypeService service;
 
-    @GetMapping(value = "/types",produces = { MediaType.APPLICATION_XML_VALUE,
+    @GetMapping(produces = { MediaType.APPLICATION_XML_VALUE,
             MediaType.APPLICATION_JSON_VALUE })
     public List<TypeVo> getAll() {
         return service.getAll();
@@ -27,7 +28,7 @@ public class TypeController {
 
 
 
-    @GetMapping(value = "/types/{id}",produces = { MediaType.APPLICATION_XML_VALUE,
+    @GetMapping(value = "/{id}",produces = { MediaType.APPLICATION_XML_VALUE,
             MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<Object> getById(@PathVariable(value = "id") Long VoId)
     {
@@ -37,7 +38,7 @@ public class TypeController {
         return new ResponseEntity<>(VoFound, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/types")
+    @PostMapping
     public ResponseEntity<Object> createEmp(@Validated @RequestBody TypeVo Vo) {
         service.save(Vo);
         return new ResponseEntity<>("created successfully",
@@ -45,7 +46,7 @@ public class TypeController {
     }
 
 
-    @PutMapping(value = "/types/{id}")
+    @PutMapping(value = "/{id}")
     public ResponseEntity<Object> updateEmp(@PathVariable(name = "id") Long VoId,
                                             @RequestBody TypeVo Vo) {
         TypeVo VoFound = service.getById(VoId);
@@ -58,7 +59,7 @@ public class TypeController {
     }
 
 
-    @DeleteMapping(value = "/types/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<Object> deleteEmp(@PathVariable(name = "id") Long VoId) {
         TypeVo VoFound = service.getById(VoId);
         if (VoFound == null)

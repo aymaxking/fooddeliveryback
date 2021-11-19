@@ -14,12 +14,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/rest/submenus")
 public class SubMenuController {
 
     @Autowired
     ISubMenuService service;
 
-    @GetMapping(value = "/subMenus",produces = { MediaType.APPLICATION_XML_VALUE,
+    @GetMapping(produces = { MediaType.APPLICATION_XML_VALUE,
             MediaType.APPLICATION_JSON_VALUE })
     public List<SubMenuVo> getAll() {
         return service.getAll();
@@ -27,7 +28,7 @@ public class SubMenuController {
 
 
 
-    @GetMapping(value = "/subMenus/{id}",produces = { MediaType.APPLICATION_XML_VALUE,
+    @GetMapping(value = "/{id}",produces = { MediaType.APPLICATION_XML_VALUE,
             MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<Object> getById(@PathVariable(value = "id") Long VoId)
     {
@@ -37,7 +38,7 @@ public class SubMenuController {
         return new ResponseEntity<>(VoFound, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/subMenus")
+    @PostMapping
     public ResponseEntity<Object> createEmp(@Validated @RequestBody SubMenuVo Vo) {
         service.save(Vo);
         return new ResponseEntity<>("created successfully",
@@ -45,7 +46,7 @@ public class SubMenuController {
     }
 
 
-    @PutMapping(value = "/subMenus/{id}")
+    @PutMapping(value = "/{id}")
     public ResponseEntity<Object> updateEmp(@PathVariable(name = "id") Long VoId,
                                             @RequestBody SubMenuVo Vo) {
         SubMenuVo VoFound = service.getById(VoId);
@@ -58,7 +59,7 @@ public class SubMenuController {
     }
 
 
-    @DeleteMapping(value = "/subMenus/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<Object> deleteEmp(@PathVariable(name = "id") Long VoId) {
         SubMenuVo VoFound = service.getById(VoId);
         if (VoFound == null)
