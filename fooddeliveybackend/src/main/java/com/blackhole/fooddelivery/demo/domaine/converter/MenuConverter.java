@@ -13,6 +13,7 @@ public class MenuConverter {
         MenuVo vo = new MenuVo();
         vo.setId(bo.getId());
         vo.setTitle(bo.getTitle());
+        vo.setSubMenus(SubMenuConverter.toVoList(bo.getSubMenus()));
         return vo;
     }
 
@@ -22,6 +23,7 @@ public class MenuConverter {
         Menu bo = new Menu();
         bo.setId(vo.getId());
         bo.setTitle(vo.getTitle());
+        bo.setSubMenus(SubMenuConverter.toBoList(vo.getSubMenus()));
         return bo;
     }
 
