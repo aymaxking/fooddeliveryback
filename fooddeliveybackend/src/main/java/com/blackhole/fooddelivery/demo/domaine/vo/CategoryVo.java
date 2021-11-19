@@ -13,8 +13,10 @@ public class CategoryVo {
     private String title;
     private List<TypeVo> types = new ArrayList<TypeVo>();
 
-    public CategoryVo(String title, List<TypeVo> type) {
+    public CategoryVo(String title, List<TypeVo> types) {
         this.title = title;
         this.types = types;
     }
+
+
 }

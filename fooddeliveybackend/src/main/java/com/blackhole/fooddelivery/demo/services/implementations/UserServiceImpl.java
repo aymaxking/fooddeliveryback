@@ -100,6 +100,11 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public UserVo getUserByUsername(String username) {
+        return UserConverter.toVo(userRepository.findByUsername(username));
+    }
+
+    @Override
     public void cleanDataBase() {
         userRepository.deleteAll();
         roleRepository.deleteAll();

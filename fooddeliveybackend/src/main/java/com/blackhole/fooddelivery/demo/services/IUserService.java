@@ -12,5 +12,6 @@ public interface IUserService extends UserDetailsService {
     List<UserVo> getAllUsers();
     List<RoleVo> getAllRoles();
     RoleVo getRoleByName(String role);
+    UserVo getUserByUsername(String username);
     void cleanDataBase();
 }
