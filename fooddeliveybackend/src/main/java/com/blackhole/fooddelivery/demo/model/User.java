@@ -1,4 +1,4 @@
-package com.blackhole.fooddelivery.demo.service.model;
+package com.blackhole.fooddelivery.demo.model;
 
 import java.util.ArrayList;
 import java.util.List;

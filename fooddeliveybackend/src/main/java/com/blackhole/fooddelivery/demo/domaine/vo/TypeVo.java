@@ -1,7 +1,5 @@
 package com.blackhole.fooddelivery.demo.domaine.vo;
 
-import com.blackhole.fooddelivery.demo.service.model.Category;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

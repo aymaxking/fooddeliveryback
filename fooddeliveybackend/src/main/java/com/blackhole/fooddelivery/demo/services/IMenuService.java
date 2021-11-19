@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IMenuService {
     MenuVo getById(Long id);
-    List<MenuVo> getAllMenus();
+    List<MenuVo> getAll();
     void save(MenuVo menu);
     void update(Long id,MenuVo menu);
     void delete(Long id);

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ISubMenuService {
     SubMenuVo getById(Long id);
-    List<SubMenuVo> getAllSubMenu();
+    List<SubMenuVo> getAll();
     void save(SubMenuVo subMenu);
     void update(Long id,SubMenuVo subMenu);
     void delete(Long id);

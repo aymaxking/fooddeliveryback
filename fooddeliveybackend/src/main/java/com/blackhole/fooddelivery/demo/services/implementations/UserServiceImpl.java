@@ -6,8 +6,8 @@ import java.util.List;
 
 import com.blackhole.fooddelivery.demo.domaine.vo.RoleVo;
 import com.blackhole.fooddelivery.demo.domaine.vo.UserVo;
-import com.blackhole.fooddelivery.demo.service.model.Role;
-import com.blackhole.fooddelivery.demo.service.model.User;
+import com.blackhole.fooddelivery.demo.model.Role;
+import com.blackhole.fooddelivery.demo.model.User;
 import com.blackhole.fooddelivery.demo.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -84,11 +84,11 @@ public class UserServiceImpl implements IUserService {
         roleRepository.save(RoleConverter.toBo(roleVo));
     }
 
+
     @Override
     public List<UserVo> getAllUsers() {
         return UserConverter.toVoList(userRepository.findAll());
     }
-
     @Override
     public List<RoleVo> getAllRoles() {
         return RoleConverter.toVoList(roleRepository.findAll());

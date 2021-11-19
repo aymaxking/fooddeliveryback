@@ -2,6 +2,7 @@ package com.blackhole.fooddelivery.demo;
 
 import com.blackhole.fooddelivery.demo.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,15 +26,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().
-                antMatchers("/rest/**").hasAuthority("ADMIN");
 
+
+        http.authorizeRequests().
+                antMatchers("/categories").permitAll().
+                antMatchers("/").permitAll().
+                antMatchers("/places").permitAll().
+                antMatchers("/login").permitAll().
+                antMatchers("/types").permitAll().
+                antMatchers("/users").permitAll().
+                antMatchers("/menus").permitAll()
+                .anyRequest().authenticated();
 //        http.authorizeRequests().
 //                antMatchers("/").permitAll().
-//                antMatchers("/login").permitAll().
+//                antMatchers("/login").permitAll();
 //                antMatchers("/welcome").hasAnyAuthority("ADMIN","CLIENT").
 //                antMatchers("/admin/**").hasAuthority("ADMIN").
-//                antMatchers("/client/**").hasAuthority("CLIENT").
+//                antMatchers("/places/**").hasAuthority("CLIENT");
 //                anyRequest().authenticated().
 //                and().csrf().disable().
 //                formLogin().loginPage("/login").
@@ -44,6 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                and().logout().logoutRequestMatcher(new
 //                        AntPathRequestMatcher("/logout")).logoutSuccessUrl("/").
 //                and().exceptionHandling().accessDeniedPage("/access-denied");
+
     }
     @Override
     public void configure(WebSecurity web) throws Exception {

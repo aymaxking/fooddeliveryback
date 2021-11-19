@@ -1,9 +1,7 @@
 package com.blackhole.fooddelivery.demo.domaine.converter;
 
-import com.blackhole.fooddelivery.demo.domaine.vo.RoleVo;
 import com.blackhole.fooddelivery.demo.domaine.vo.TypeVo;
-import com.blackhole.fooddelivery.demo.service.model.Role;
-import com.blackhole.fooddelivery.demo.service.model.Type;
+import com.blackhole.fooddelivery.demo.model.Type;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +14,6 @@ public class TypeConverter {
         vo.setId(bo.getId());
         vo.setTitle(bo.getTitle());
         vo.setIcon(bo.getIcon());
-        vo.setCategory(CategoryConverter.toVo(bo.getCategory()));
         return vo;
     }
     public static Type toBo(TypeVo vo) {
@@ -26,7 +23,6 @@ public class TypeConverter {
         bo.setId(vo.getId());
         bo.setTitle(vo.getTitle());
         bo.setIcon(vo.getIcon());
-        bo.setCategory(CategoryConverter.toBo(vo.getCategory()));
         return bo;
     }
     public static List<TypeVo> toVoList(List<Type> boList) {

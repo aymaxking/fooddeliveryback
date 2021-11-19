@@ -1,4 +1,4 @@
-package com.blackhole.fooddelivery.demo.service.model;
+package com.blackhole.fooddelivery.demo.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,22 +8,22 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name = "subMenu")
+@Table(name = "place")
 @NoArgsConstructor
-public class SubMenu {
+public class Place {
     @Id
     @GeneratedValue
-    @Column(name = "subMenu_id")
+    @Column(name = "place_id")
     private Long id;
-    @Column(name = "subMenu")
+    @Column(name = "place")
     String title;
-    double price;
     @Lob
     byte[] img;
+    String description;
 
-    public SubMenu(String title, double price, byte[] img) {
+    public Place(String title, byte[] img, String description) {
         this.title = title;
-        this.price = price;
         this.img = img;
+        this.description = description;
     }
 }

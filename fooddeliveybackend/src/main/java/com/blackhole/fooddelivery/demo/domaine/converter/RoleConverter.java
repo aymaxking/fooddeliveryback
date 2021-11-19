@@ -1,7 +1,7 @@
 package com.blackhole.fooddelivery.demo.domaine.converter;
 
 import com.blackhole.fooddelivery.demo.domaine.vo.RoleVo;
-import com.blackhole.fooddelivery.demo.service.model.*;
+import com.blackhole.fooddelivery.demo.model.Role;
 import java.util.ArrayList;
 import java.util.List;
 

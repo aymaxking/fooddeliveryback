@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ITypeService {
     TypeVo getById(Long id);
-    List<TypeVo> getAllSubTypes();
+    List<TypeVo> getAll();
     void save(TypeVo type);
     void update(Long id,TypeVo type);
     void delete(Long id);

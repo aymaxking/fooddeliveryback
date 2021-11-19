@@ -1,12 +1,9 @@
 package com.blackhole.fooddelivery.demo.services.implementations;
 
-import com.blackhole.fooddelivery.demo.dao.CategoryRepository;
 import com.blackhole.fooddelivery.demo.dao.PlaceRepository;
-import com.blackhole.fooddelivery.demo.domaine.converter.CategoryConverter;
 import com.blackhole.fooddelivery.demo.domaine.converter.PlaceConverter;
 import com.blackhole.fooddelivery.demo.domaine.vo.PlaceVo;
-import com.blackhole.fooddelivery.demo.service.model.Category;
-import com.blackhole.fooddelivery.demo.service.model.Place;
+import com.blackhole.fooddelivery.demo.model.Place;
 import com.blackhole.fooddelivery.demo.services.IPLaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -32,7 +29,7 @@ public class PlaceServiceImp implements IPLaceService {
     }
 
     @Override
-    public List<PlaceVo> getAllPlaces() {
+    public List<PlaceVo> getAll() {
         List<Place> list = placeRepository.findAll();
         return PlaceConverter.toVoList(list);
     }

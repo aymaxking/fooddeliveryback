@@ -1,12 +1,9 @@
 package com.blackhole.fooddelivery.demo.services.implementations;
 
-import com.blackhole.fooddelivery.demo.dao.CategoryRepository;
 import com.blackhole.fooddelivery.demo.dao.SubMenuRepository;
-import com.blackhole.fooddelivery.demo.domaine.converter.CategoryConverter;
 import com.blackhole.fooddelivery.demo.domaine.converter.SubMenuConverter;
 import com.blackhole.fooddelivery.demo.domaine.vo.SubMenuVo;
-import com.blackhole.fooddelivery.demo.service.model.Category;
-import com.blackhole.fooddelivery.demo.service.model.SubMenu;
+import com.blackhole.fooddelivery.demo.model.SubMenu;
 import com.blackhole.fooddelivery.demo.services.ISubMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +26,7 @@ public class SubMenuServiceImp implements ISubMenuService {
     }
 
     @Override
-    public List<SubMenuVo> getAllSubMenu() {
+    public List<SubMenuVo> getAll() {
         List<SubMenu> list = subMenuRepository.findAll();
         return SubMenuConverter.toVoList(list);
     }

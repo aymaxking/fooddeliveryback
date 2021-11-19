@@ -1,6 +1,5 @@
-package com.blackhole.fooddelivery.demo.service.model;
+package com.blackhole.fooddelivery.demo.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,6 +18,10 @@ public class Category {
     private Long id;
     @Column(name = "category")
     private String title;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "category_type", joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "type_id"))
+    private List<Type> types = new ArrayList<Type>();
 
     public Category(String title) {
         this.title = title;
