@@ -18,5 +18,9 @@ public class CategoryVo {
         this.types = types;
     }
 
+    public CategoryVo(String title) {
+        this.title = title;
+    }
+
 
 }

@@ -62,9 +62,9 @@ public class FoodDeliveryApplication implements CommandLineRunner {
         userService.save(delivery1);
 
 
-        categoryService.save(new CategoryVo("Meals",null));
-        categoryService.save(new CategoryVo("Drinks",null));
-        categoryService.save(new CategoryVo("Dessert",null));
+        categoryService.save(new CategoryVo("Meals"));
+        categoryService.save(new CategoryVo("Drinks"));
+        categoryService.save(new CategoryVo("Dessert"));
 
 
 

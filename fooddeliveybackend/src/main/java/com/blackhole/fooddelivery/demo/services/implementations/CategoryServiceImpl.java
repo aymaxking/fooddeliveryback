@@ -27,7 +27,7 @@ public class CategoryServiceImpl implements ICategoryService {
         boolean trouve = categoryRepository.existsById(id);
         if (!trouve)
             return null;
-        return CategoryConverter.toVo(categoryRepository.getOne(id));
+        return CategoryConverter.toVo(categoryRepository.getById(id));
     }
 
     @Override

@@ -40,7 +40,7 @@ public class CategoryController {
     public ResponseEntity<Object> getById(@PathVariable(value = "id") Long VoId) {
         CategoryVo VoFound = service.getById(VoId);
         if (VoFound == null)
-            return new ResponseEntity<>("doen't exist", HttpStatus.OK);
+            return new ResponseEntity<>("doesn't exist", HttpStatus.OK);
         return new ResponseEntity<>(VoFound, HttpStatus.OK);
     }
 
