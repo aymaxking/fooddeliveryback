@@ -33,15 +33,16 @@ public class AuthController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @PostMapping("/signin")
+    @PostMapping("/login")
     public ResponseEntity<String> authenticateUser(@RequestBody UserVo vo) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                vo.getUsername(), vo.getPassword()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(auth.isAuthenticated())
         return new ResponseEntity<>("User signed-in successfully!.", HttpStatus.OK);
+        else
+            return new ResponseEntity<>("Check your email and passowrd", HttpStatus.BAD_REQUEST);
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/logout")
     public ResponseEntity<?> registerUser(@RequestBody UserVo vo) {
         if (userService.getUserByUsername(vo.getUsername()) == null) {
             return new ResponseEntity<>("Username is already taken!", HttpStatus.BAD_REQUEST);
@@ -50,4 +51,5 @@ public class AuthController {
         return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
 
     }
-}
+
+    }
