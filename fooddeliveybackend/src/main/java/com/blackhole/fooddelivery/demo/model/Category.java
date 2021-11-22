@@ -18,7 +18,7 @@ public class Category {
     private Long id;
     @Column(name = "category")
     private String title;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "category_type", joinColumns = @JoinColumn(name = "category_id"),
             inverseJoinColumns = @JoinColumn(name = "type_id"))
     private List<Type> types = new ArrayList<Type>();

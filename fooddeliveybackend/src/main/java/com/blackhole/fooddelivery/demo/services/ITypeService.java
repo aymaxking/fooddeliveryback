@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ITypeService {
     TypeVo getById(Long id);
+    TypeVo getByTitle(String title);
     List<TypeVo> getAll();
     void save(TypeVo type);
     void update(Long id,TypeVo type);

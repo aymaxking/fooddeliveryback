@@ -47,6 +47,7 @@ public class FoodDeliveryApplication implements CommandLineRunner {
         userService.save(new RoleVo("CLIENT"));
         userService.save(new RoleVo("PLACE"));
         userService.save(new RoleVo("DELIVERY"));
+
         RoleVo roleAdmin = userService.getRoleByName("ADMIN");
         RoleVo roleClient = userService.getRoleByName("CLIENT");
         RoleVo rolePlace = userService.getRoleByName("PLACE");
@@ -54,34 +55,42 @@ public class FoodDeliveryApplication implements CommandLineRunner {
 
         UserVo admin1 = new UserVo("admin1@gmail.com", "admin1", Arrays.asList(roleAdmin));
         UserVo client1 = new UserVo("client1@gmail.com", "client1", Arrays.asList(roleClient));
-        UserVo place1 = new UserVo("place1@gmail.com", "place1", Arrays.asList(roleClient));
-        UserVo delivery1 = new UserVo("delivery1@gmail.com", "delivery1", Arrays.asList(roleClient));
+        UserVo place1 = new UserVo("place1@gmail.com", "place1", Arrays.asList(rolePlace));
+        UserVo delivery1 = new UserVo("delivery1@gmail.com", "delivery1", Arrays.asList(roleDelivery));
+
         userService.save(admin1);
         userService.save(client1);
         userService.save(place1);
         userService.save(delivery1);
 
+        TypeVo type1=new TypeVo("Burgers",null);
+        TypeVo type2=new TypeVo("Fiend Chicken",null);
+        TypeVo type3=new TypeVo("Soft Drinks",null);
+        TypeVo type4=new TypeVo("Püddings",null);
 
-        categoryService.save(new CategoryVo("Meals"));
-        categoryService.save(new CategoryVo("Drinks"));
-        categoryService.save(new CategoryVo("Dessert"));
+
+        typeService.save(type1);
+        typeService.save(type2);
+        typeService.save(type3);
+        typeService.save(type4);
+
+        CategoryVo category1 = new CategoryVo("Meals");
+        CategoryVo category2 =new CategoryVo("Drinks");
+        CategoryVo category3 =new CategoryVo("Dessert");
 
 
 
-//        categoryService.save(category);
-//
-//
-//
-//
-//
-//
-//
-//        typeService.save(new TypeVo("Burgers",null,category));
-//        typeService.save(new TypeVo("Friend Chicken",null, category));
-//        typeService.save(new TypeVo("Soft Drinks",null, category));
-//        typeService.save(new TypeVo("Puddings",null, category));
-//
-//
+        category1.addtype(typeService.getAll().get(0));
+        category2.addtype(typeService.getAll().get(1));
+        category3.addtype(typeService.getAll().get(2));
+        category3.addtype(typeService.getAll().get(3));
+
+        categoryService.save(category1);
+        categoryService.save(category2);
+        categoryService.save(category3);
+
+
+
         pLaceService.save(new PlaceVo("McDonalds",null,"Fast Food - Burgers"));
         pLaceService.save(new PlaceVo("KFC",null,"Fast Food - Fried Chicken"));
         pLaceService.save(new PlaceVo("Burger King",null,"Fast Food - Burgers"));

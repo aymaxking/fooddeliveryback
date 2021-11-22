@@ -12,11 +12,9 @@ public class TypeVo {
     String title;
     @Lob
     byte[] icon;
-    CategoryVo category;
 
-    public TypeVo(String title, byte[] icon,CategoryVo category) {
+    public TypeVo(String title, byte[] icon) {
         this.title = title;
         this.icon = icon;
-        this.category=category;
     }
 }

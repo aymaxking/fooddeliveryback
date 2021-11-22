@@ -17,7 +17,9 @@ public class CategoryVo {
         this.title = title;
         this.types = types;
     }
-
+    public void addtype(TypeVo type){
+        types.add(type);
+    }
     public CategoryVo(String title) {
         this.title = title;
     }

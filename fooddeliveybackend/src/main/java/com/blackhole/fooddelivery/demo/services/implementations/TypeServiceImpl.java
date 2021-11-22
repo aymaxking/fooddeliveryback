@@ -24,6 +24,14 @@ public class TypeServiceImpl implements ITypeService {
         return TypeConverter.toVo(typeRepository.getOne(id));    }
 
     @Override
+    public TypeVo getByTitle(String title) {
+        TypeVo trouve = TypeConverter.toVo(typeRepository.findByTitle(title));
+        if (trouve==null)
+            return null;
+        return trouve;
+    }
+
+    @Override
     public List<TypeVo> getAll() {
         return TypeConverter.toVoList(typeRepository.findAll());    }
 
