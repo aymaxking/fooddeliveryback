@@ -3,10 +3,9 @@ package com.blackhole.fooddelivery.demo.services.implementations;
 import com.blackhole.fooddelivery.demo.dao.CategoryRepository;
 import com.blackhole.fooddelivery.demo.dao.TypeRepository;
 import com.blackhole.fooddelivery.demo.domaine.converter.CategoryConverter;
-import com.blackhole.fooddelivery.demo.domaine.converter.TypeConverter;
 import com.blackhole.fooddelivery.demo.domaine.vo.CategoryVo;
-import com.blackhole.fooddelivery.demo.domaine.vo.TypeVo;
 import com.blackhole.fooddelivery.demo.model.Category;
+import com.blackhole.fooddelivery.demo.model.Testclass;
 import com.blackhole.fooddelivery.demo.services.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +29,12 @@ public class CategoryServiceImpl implements ICategoryService {
             return null;
         return CategoryConverter.toVo(categoryRepository.getById(id));
     }
+
+    @Override
+    public Testclass test() {
+        return new Testclass("this is for test");
+    }
+
 
     @Override
     public List<CategoryVo> getAll() {

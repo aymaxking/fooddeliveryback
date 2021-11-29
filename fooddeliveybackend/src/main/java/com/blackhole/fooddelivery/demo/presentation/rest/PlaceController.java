@@ -26,14 +26,14 @@ public class PlaceController {
     @Autowired
     IPLaceService service;
 
-    @GetMapping(produces = {MediaType.APPLICATION_XML_VALUE,
+    @GetMapping(produces = {
             MediaType.APPLICATION_JSON_VALUE})
     public List<PlaceVo> getAll() {
         return service.getAll();
     }
 
 
-    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_XML_VALUE,
+    @GetMapping(value = "/{id}", produces = {
             MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Object> getById(@PathVariable(value = "id") Long VoId) {
         PlaceVo VoFound = service.getById(VoId);

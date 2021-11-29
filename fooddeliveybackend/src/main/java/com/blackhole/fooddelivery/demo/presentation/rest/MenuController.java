@@ -20,18 +20,16 @@ public class MenuController {
     @Autowired
     IMenuService service;
 
-    @GetMapping(produces = { MediaType.APPLICATION_XML_VALUE,
-            MediaType.APPLICATION_JSON_VALUE })
+    @GetMapping(produces = {
+            MediaType.APPLICATION_JSON_VALUE})
     public List<MenuVo> getAll() {
         return service.getAll();
     }
 
 
-
-    @GetMapping(value = "/{id}",produces = { MediaType.APPLICATION_XML_VALUE,
-            MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<Object> getById(@PathVariable(value = "id") Long VoId)
-    {
+    @GetMapping(value = "/{id}", produces = {
+            MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Object> getById(@PathVariable(value = "id") Long VoId) {
         MenuVo VoFound = service.getById(VoId);
         if (VoFound == null)
             return new ResponseEntity<>("doen't exist", HttpStatus.OK);

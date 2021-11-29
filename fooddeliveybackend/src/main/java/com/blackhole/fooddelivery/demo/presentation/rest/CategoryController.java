@@ -3,6 +3,7 @@ package com.blackhole.fooddelivery.demo.presentation.rest;
 import com.blackhole.fooddelivery.demo.FoodDeliveryApplication;
 import com.blackhole.fooddelivery.demo.domaine.vo.CategoryVo;
 import com.blackhole.fooddelivery.demo.domaine.vo.PlaceVo;
+import com.blackhole.fooddelivery.demo.model.Category;
 import com.blackhole.fooddelivery.demo.services.ICategoryService;
 import com.blackhole.fooddelivery.demo.services.IPLaceService;
 import org.slf4j.LoggerFactory;
@@ -23,25 +24,29 @@ public class CategoryController {
     @Autowired
     ICategoryService service;
 
-    @GetMapping(produces = {MediaType.APPLICATION_XML_VALUE,
+    @GetMapping(produces = {
             MediaType.APPLICATION_JSON_VALUE})
     public List<CategoryVo> getAll() {
         return service.getAll();
     }
 
-    @GetMapping("/test")
-    public String test() {
-        return "test1";
-    }
 
 
-    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_XML_VALUE,
+
+    @GetMapping(value = "/{id}", produces = {
             MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Object> getById(@PathVariable(value = "id") Long VoId) {
         CategoryVo VoFound = service.getById(VoId);
         if (VoFound == null)
             return new ResponseEntity<>("doesn't exist", HttpStatus.OK);
         return new ResponseEntity<>(VoFound, HttpStatus.OK);
+    }
+
+
+    @GetMapping(value = "/test", produces = {
+            MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Object> test() {
+        return new ResponseEntity<>(service.test(), HttpStatus.OK);
     }
 
     @PostMapping
