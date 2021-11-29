@@ -25,4 +25,7 @@ public class PlaceVo {
         this.img = img;
         this.description = description;
     }
+    public void addmenu(MenuVo menu){
+        menus.add(menu);
+    }
 }

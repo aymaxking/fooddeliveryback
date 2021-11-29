@@ -12,44 +12,46 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 
 @RestController
-@RequestMapping("/rest")
+@RequestMapping("/rest/auth")
 public class AuthController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private IUserService userService;
-
+    private IUserService service;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @PostMapping("/login")
-    public ResponseEntity<String> authenticateUser(@RequestBody UserVo vo) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if(auth.isAuthenticated())
-        return new ResponseEntity<>("User signed-in successfully!.", HttpStatus.OK);
-        else
-            return new ResponseEntity<>("Check your email and passowrd", HttpStatus.BAD_REQUEST);
+//    @PostMapping(value="/login")
+//    public Object login(@RequestBody UserVo vo) {
+//        final Authentication authentication = authenticationManager.authenticate(
+//                new UsernamePasswordAuthenticationToken(
+//                        vo.getUsername(),
+//                        vo.getPassword()
+//                )
+//        );
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
+//        return authentication.getCredentials();
+//    }
+
+    @PostMapping(value="/login")
+    public ResponseEntity<Object> login(@RequestBody UserVo vo) {
+        UserVo VoFound = service.login(vo);
+        if (VoFound == null)
+            return new ResponseEntity<>("doen't exist", HttpStatus.OK);
+        return  new ResponseEntity<>(VoFound, HttpStatus.OK);
     }
 
-    @PostMapping("/logout")
-    public ResponseEntity<?> registerUser(@RequestBody UserVo vo) {
-        if (userService.getUserByUsername(vo.getUsername()) == null) {
-            return new ResponseEntity<>("Username is already taken!", HttpStatus.BAD_REQUEST);
-        }
-        userService.save(vo);
-        return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
-
+    @PostMapping(value="/test")
+    public String test(@RequestBody UserVo vo) {
+        return "test";
     }
 
     }

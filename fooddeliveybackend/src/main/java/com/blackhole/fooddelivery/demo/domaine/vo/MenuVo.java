@@ -19,4 +19,8 @@ public class MenuVo {
     public MenuVo(String title) {
         this.title = title;
     }
+
+    public void addsubmenu(SubMenuVo subMenu){
+        subMenus.add(subMenu);
+    }
 }

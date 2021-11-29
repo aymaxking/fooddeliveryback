@@ -21,6 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "rest/places")
+@CrossOrigin("*")
 public class PlaceController {
 
     @Autowired

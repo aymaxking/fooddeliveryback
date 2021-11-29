@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.blackhole.fooddelivery.demo.domaine.converter.TypeConverter;
 import com.blackhole.fooddelivery.demo.domaine.vo.RoleVo;
+import com.blackhole.fooddelivery.demo.domaine.vo.TypeVo;
 import com.blackhole.fooddelivery.demo.domaine.vo.UserVo;
 import com.blackhole.fooddelivery.demo.model.Role;
 import com.blackhole.fooddelivery.demo.model.User;
@@ -80,8 +82,21 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public void delete(Long id) {
+        userRepository.deleteById(id);
+    }
+
+    @Override
     public void save(RoleVo roleVo) {
         roleRepository.save(RoleConverter.toBo(roleVo));
+    }
+
+    @Override
+    public UserVo getById(Long id) {
+            boolean trouve = userRepository.existsById(id);
+            if (!trouve)
+                return null;
+            return UserConverter.toVo(userRepository.getOne(id));
     }
 
 
@@ -108,6 +123,11 @@ public class UserServiceImpl implements IUserService {
     public void cleanDataBase() {
         userRepository.deleteAll();
         roleRepository.deleteAll();
+    }
+
+    @Override
+    public UserVo login(UserVo user) {
+        return UserConverter.toVo(userRepository.findByUsernameEqualsAndPasswordEquals(user.getUsername(),user.getPassword()));
     }
 
     @Bean
