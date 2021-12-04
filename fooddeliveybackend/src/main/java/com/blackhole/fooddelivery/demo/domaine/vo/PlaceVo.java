@@ -27,5 +27,16 @@ public class PlaceVo {
     }
     public void addmenu(MenuVo menu){
         menus.add(menu);
+        menu.setPlace(this);
+    }
+    public void removemenu(MenuVo menu){
+        menus.remove(menu);
+        menu.setPlace(null);
+    }
+    public MenuVo findmenubyid(Long id){
+        for(MenuVo menu : menus){
+            if(menu.getId()==id) return menu;
+        }
+        return null;
     }
 }

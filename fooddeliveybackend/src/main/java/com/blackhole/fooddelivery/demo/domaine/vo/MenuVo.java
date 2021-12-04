@@ -13,14 +13,18 @@ import java.util.List;
 public class MenuVo {
     private Long id;
     String title;
+    private PlaceVo place;
     private List<SubMenuVo> subMenus = new ArrayList<SubMenuVo>();
-
-
+    public void addsubmenu(SubMenuVo n){
+        subMenus.add(n);
+        n.setMenu(this);
+    }
+    public void removesubmenu(SubMenuVo o){
+        subMenus.remove(o);
+        o.setMenu(null);
+    }
     public MenuVo(String title) {
         this.title = title;
     }
 
-    public void addsubmenu(SubMenuVo subMenu){
-        subMenus.add(subMenu);
-    }
 }

@@ -22,9 +22,7 @@ public class Place {
     @Lob
     byte[] img;
     String description;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "place_menu", joinColumns = @JoinColumn(name = "place_id"),
-            inverseJoinColumns = @JoinColumn(name = "menu_id"))
+    @OneToMany(mappedBy="place")
     private List<Menu> menus = new ArrayList<Menu>();
 
     public Place(String title, byte[] img, String description) {

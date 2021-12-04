@@ -2,7 +2,9 @@ package com.blackhole.fooddelivery.demo.presentation.rest;
 
 import com.blackhole.fooddelivery.demo.dao.CategoryRepository;
 import com.blackhole.fooddelivery.demo.dao.PlaceRepository;
+import com.blackhole.fooddelivery.demo.domaine.vo.MenuVo;
 import com.blackhole.fooddelivery.demo.domaine.vo.PlaceVo;
+import com.blackhole.fooddelivery.demo.domaine.vo.SubMenuVo;
 import com.blackhole.fooddelivery.demo.model.Category;
 import com.blackhole.fooddelivery.demo.model.Place;
 import com.blackhole.fooddelivery.demo.services.IPLaceService;
@@ -73,4 +75,36 @@ public class PlaceController {
         return new ResponseEntity<>("place is deleted successsfully",
                 HttpStatus.OK);
     }
+
+
+    @PutMapping(value = "/{id}/addmenu")
+    public ResponseEntity<Object> addmenu(@PathVariable(name = "id") Long VoId,
+                                            @RequestBody MenuVo vo) {
+        PlaceVo VoFound = service.getById(VoId);
+        if (VoFound == null)
+            return new ResponseEntity<>("place doen't exist", HttpStatus.OK);
+        VoFound.addmenu(vo);
+        service.save(VoFound);
+        return new ResponseEntity<>("place is updated successsfully",
+                HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/{id}/menus/{id2}/addsubmenu")
+    public ResponseEntity<Object> addsubmenu(@PathVariable(name = "id") Long VoId,
+                                             @PathVariable(name = "id2") Long VoId2,
+                                          @RequestBody SubMenuVo vo) {
+        PlaceVo VoFound = service.getById(VoId);
+        if (VoFound == null)
+            return new ResponseEntity<>("place doen't exist", HttpStatus.OK);
+        MenuVo VoFound2 = VoFound.findmenubyid(VoId2);
+        if (VoFound2 == null)
+            return new ResponseEntity<>("menu doen't exist", HttpStatus.OK);
+        VoFound2.addsubmenu(vo);
+        service.save(VoFound);
+        return new ResponseEntity<>("place is updated successsfully",
+                HttpStatus.OK);
+    }
+
+
+
 }

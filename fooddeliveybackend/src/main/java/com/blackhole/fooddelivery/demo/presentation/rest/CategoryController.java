@@ -2,7 +2,9 @@ package com.blackhole.fooddelivery.demo.presentation.rest;
 
 import com.blackhole.fooddelivery.demo.FoodDeliveryApplication;
 import com.blackhole.fooddelivery.demo.domaine.vo.CategoryVo;
+import com.blackhole.fooddelivery.demo.domaine.vo.MenuVo;
 import com.blackhole.fooddelivery.demo.domaine.vo.PlaceVo;
+import com.blackhole.fooddelivery.demo.domaine.vo.TypeVo;
 import com.blackhole.fooddelivery.demo.model.Category;
 import com.blackhole.fooddelivery.demo.services.ICategoryService;
 import com.blackhole.fooddelivery.demo.services.IPLaceService;
@@ -30,9 +32,6 @@ public class CategoryController {
         return service.getAll();
     }
 
-
-
-
     @GetMapping(value = "/{id}", produces = {
             MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Object> getById(@PathVariable(value = "id") Long VoId) {
@@ -43,14 +42,9 @@ public class CategoryController {
     }
 
 
-    @GetMapping(value = "/test", produces = {
-            MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Object> test() {
-        return new ResponseEntity<>(service.test(), HttpStatus.OK);
-    }
 
     @PostMapping
-    public ResponseEntity<Object> createEmp(@Validated @RequestBody CategoryVo Vo) {
+    public ResponseEntity<Object> create(@Validated @RequestBody CategoryVo Vo) {
         service.save(Vo);
         return new ResponseEntity<>("created successfully",
                 HttpStatus.CREATED);
@@ -58,7 +52,7 @@ public class CategoryController {
 
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Object> updateEmp(@PathVariable(name = "id") Long VoId,
+    public ResponseEntity<Object> update(@PathVariable(name = "id") Long VoId,
                                             @RequestBody CategoryVo Vo) {
         CategoryVo VoFound = service.getById(VoId);
         if (VoFound == null)
@@ -69,9 +63,21 @@ public class CategoryController {
                 HttpStatus.OK);
     }
 
+    @PutMapping(value = "/{id}/addtype")
+    public ResponseEntity<Object> addtype(@PathVariable(name = "id") Long VoId,
+                                          @RequestBody TypeVo vo) {
+        CategoryVo VoFound = service.getById(VoId);
+        if (VoFound == null)
+            return new ResponseEntity<>("category doen't exist", HttpStatus.OK);
+        VoFound.addtype(vo);
+        service.save(VoFound);
+        return new ResponseEntity<>("category is updated successsfully",
+                HttpStatus.OK);
+    }
+
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Object> deleteEmp(@PathVariable(name = "id") Long VoId) {
+    public ResponseEntity<Object> delete(@PathVariable(name = "id") Long VoId) {
         CategoryVo VoFound = service.getById(VoId);
         if (VoFound == null)
             return new ResponseEntity<>("doen't exist", HttpStatus.OK);

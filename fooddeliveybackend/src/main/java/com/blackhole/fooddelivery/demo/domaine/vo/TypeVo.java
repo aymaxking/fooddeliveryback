@@ -1,5 +1,6 @@
 package com.blackhole.fooddelivery.demo.domaine.vo;
 
+import com.blackhole.fooddelivery.demo.model.Category;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,9 +13,11 @@ public class TypeVo {
     String title;
     @Lob
     byte[] icon;
+    private CategoryVo category;
 
-    public TypeVo(String title, byte[] icon) {
+    public TypeVo(String title, byte[] icon,CategoryVo category) {
         this.title = title;
         this.icon = icon;
+        this.category=category;
     }
 }
