@@ -1,5 +1,7 @@
 package com.blackhole.fooddelivery.demo.domaine.vo;
 
+import com.blackhole.fooddelivery.demo.domaine.converter.TypeConverter;
+import com.blackhole.fooddelivery.demo.model.Type;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -20,8 +20,8 @@ import java.util.Collections;
 @RequestMapping("/rest/auth")
 public class AuthController {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+//    @Autowired
+//    private AuthenticationManager authenticationManager;
 
     @Autowired
     private IUserService service;

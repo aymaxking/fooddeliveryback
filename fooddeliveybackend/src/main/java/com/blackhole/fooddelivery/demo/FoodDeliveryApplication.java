@@ -63,6 +63,29 @@ public class FoodDeliveryApplication implements CommandLineRunner {
         userService.save(iplace1);
         userService.save(delivery1);
 
+        TypeVo type1=new TypeVo("Burgers",null);
+        TypeVo type2=new TypeVo("Fiend Chicken",null);
+        TypeVo type3=new TypeVo("Soft Drinks",null);
+        TypeVo type4=new TypeVo("Püddings",null);
+
+
+
+
+        CategoryVo category1 = new CategoryVo("Meals");
+        CategoryVo category2 =new CategoryVo("Drinks");
+        CategoryVo category3 =new CategoryVo("Dessert");
+
+
+
+        category1.addtype(type1);
+        category2.addtype(type2);
+        category3.addtype(type3);
+        category3.addtype(type4);
+
+        categoryService.save(category1);
+        categoryService.save(category2);
+        categoryService.save(category3);
+
 
 
 

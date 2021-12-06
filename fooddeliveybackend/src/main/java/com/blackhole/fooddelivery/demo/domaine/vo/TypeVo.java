@@ -20,4 +20,8 @@ public class TypeVo {
         this.icon = icon;
         this.category=category;
     }
+    public TypeVo(String title, byte[] icon) {
+        this.title = title;
+        this.icon = icon;
+    }
 }
