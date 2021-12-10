@@ -87,6 +87,15 @@ public class FoodDeliveryApplication implements CommandLineRunner {
         menuVo.addsubmenu(new SubMenuVo("Burger1",12,null));
         menuVo.addsubmenu(new SubMenuVo("Burger2",20,null));
         menuVo.addsubmenu(new SubMenuVo("Burger3",19,null));
+        menuVo.addsubmenu(new SubMenuVo("Burger3",19,null));
+        menuVo.addsubmenu(new SubMenuVo("Burger3",19,null));
+        menuVo.addsubmenu(new SubMenuVo("Burger3",19,null));
+        menuVo.addsubmenu(new SubMenuVo("Burger3",19,null));
+        menuVo.addsubmenu(new SubMenuVo("Burger3",19,null));
+        menuVo.addsubmenu(new SubMenuVo("Burger3",19,null));
+        menuVo.addsubmenu(new SubMenuVo("Burger3",19,null));
+        menuVo.addsubmenu(new SubMenuVo("Burger3",19,null));
+
 
         MenuVo menuVo2 = new MenuVo("Drinks");
 
