@@ -101,8 +101,7 @@ public class PlaceController {
             return new ResponseEntity<>("menu doen't exist", HttpStatus.OK);
         VoFound2.addsubmenu(vo);
         service.save(VoFound);
-        return new ResponseEntity<>("place is updated successsfully",
-                HttpStatus.OK);
+        return new ResponseEntity<>("place is updated successsfully", HttpStatus.OK);
     }
 
 

@@ -35,63 +35,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 http.authorizeRequests().
               antMatchers("/rest/**").
                permitAll();
-////login
-//        http.authorizeRequests().
-//                antMatchers("/rest/auth/login").
-//                permitAll();
-////ADMIN
-//        http.authorizeRequests().
-//                antMatchers("/rest/categories").
-//                hasAuthority("ADMIN");
-//
-//        http.authorizeRequests().
-//                antMatchers("/rest/users").
-//                hasAuthority("ADMIN");
-//
-//        http.authorizeRequests().
-//                antMatchers("/rest/types").
-//                hasAuthority("ADMIN");
-//
-//        http.authorizeRequests().
-//                antMatchers("/rest/places").
-//                hasAuthority("ADMIN");
-//
-//        http.authorizeRequests().
-//                antMatchers(HttpMethod.GET,"/rest/menus").
-//                hasAuthority("ADMIN");
-//
-//        http.authorizeRequests().
-//                antMatchers(HttpMethod.GET,"/rest/submenus").
-//                hasAuthority("ADMIN");
-//
-////PLACE
-//        http.authorizeRequests().
-//                antMatchers(HttpMethod.GET,"/rest/categories").
-//                hasAuthority("PLACE");
-//
-//        http.authorizeRequests().
-//                antMatchers(HttpMethod.GET,"/rest/types").
-//                hasAuthority("PLACE");
-//
-//        http.authorizeRequests().
-//                antMatchers("/rest/places").
-//                hasAuthority("PLACE");
-//
-//        http.authorizeRequests().
-//                antMatchers("/rest/menus").
-//                hasAuthority("PLACE");
-//
-//        http.authorizeRequests().
-//                antMatchers("/rest/submenus").
-//                hasAuthority("PLACE");
-//
-//
-//
-//
-//        http.authorizeRequests().
-//                antMatchers("/rest/**").permitAll();
-
-
     }
 
     @Override
