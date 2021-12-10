@@ -22,7 +22,8 @@ public class Place {
     @Lob
     byte[] img;
     String description;
-    @OneToMany(mappedBy="place")
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="place_id", nullable=false)
     private List<Menu> menus = new ArrayList<Menu>();
 
     public Place(String title, byte[] img, String description) {

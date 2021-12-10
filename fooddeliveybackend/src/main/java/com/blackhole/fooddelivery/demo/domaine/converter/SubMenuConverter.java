@@ -15,7 +15,6 @@ public class SubMenuConverter {
         vo.setImg(bo.getImg());
         vo.setPrice(bo.getPrice());
         vo.setTitle(bo.getTitle());
-        vo.setMenu(MenuConverter.toVo(bo.getMenu()));
         return vo;
     }
     public static SubMenu toBo(SubMenuVo vo) {
@@ -26,7 +25,6 @@ public class SubMenuConverter {
         bo.setImg(vo.getImg());
         bo.setPrice(vo.getPrice());
         bo.setTitle(vo.getTitle());
-        bo.setMenu(MenuConverter.toBo(vo.getMenu()));
         return bo;
     }
     public static List<SubMenuVo> toVoList(List<SubMenu> boList) {

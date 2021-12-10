@@ -14,7 +14,6 @@ public class MenuConverter {
         vo.setId(bo.getId());
         vo.setTitle(bo.getTitle());
         vo.setSubMenus(SubMenuConverter.toVoList(bo.getSubMenus()));
-        vo.setPlace(PlaceConverter.toVo(bo.getPlace()));
         return vo;
     }
 
@@ -25,7 +24,6 @@ public class MenuConverter {
         bo.setId(vo.getId());
         bo.setTitle(vo.getTitle());
         bo.setSubMenus(SubMenuConverter.toBoList(vo.getSubMenus()));
-        bo.setPlace(PlaceConverter.toBo(vo.getPlace()));
         return bo;
     }
 

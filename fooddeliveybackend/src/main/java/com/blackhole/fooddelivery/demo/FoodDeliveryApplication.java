@@ -1,6 +1,7 @@
 package com.blackhole.fooddelivery.demo;
 
 import com.blackhole.fooddelivery.demo.domaine.vo.*;
+import com.blackhole.fooddelivery.demo.model.Place;
 import com.blackhole.fooddelivery.demo.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -63,12 +64,6 @@ public class FoodDeliveryApplication implements CommandLineRunner {
         userService.save(iplace1);
         userService.save(delivery1);
 
-        TypeVo type1=new TypeVo("Burgers",null);
-        TypeVo type2=new TypeVo("Fiend Chicken",null);
-        TypeVo type3=new TypeVo("Soft Drinks",null);
-        TypeVo type4=new TypeVo("Püddings",null);
-
-
 
 
         CategoryVo category1 = new CategoryVo("Meals");
@@ -76,15 +71,26 @@ public class FoodDeliveryApplication implements CommandLineRunner {
         CategoryVo category3 =new CategoryVo("Dessert");
 
 
-
-        category1.addtype(type1);
-        category2.addtype(type2);
-        category3.addtype(type3);
-        category3.addtype(type4);
+        category1.addtype(new TypeVo("Burgers",null));
+        category2.addtype(new TypeVo("Fiend Chicken",null));
+        category3.addtype(new TypeVo("Soft Drinks",null));
+        category3.addtype(new TypeVo("Püddings",null));
 
         categoryService.save(category1);
         categoryService.save(category2);
         categoryService.save(category3);
+
+        PlaceVo place1 = new PlaceVo("place test",null,"description placetest");
+
+        MenuVo menuVo = new MenuVo("Burgers");
+
+        menuVo.addsubmenu(new SubMenuVo("Burger1",12,null));
+        menuVo.addsubmenu(new SubMenuVo("Burger2",12,null));
+        menuVo.addsubmenu(new SubMenuVo("Burger3",12,null));
+
+        place1.addmenu(menuVo);
+
+        pLaceService.save(place1);
 
 
 

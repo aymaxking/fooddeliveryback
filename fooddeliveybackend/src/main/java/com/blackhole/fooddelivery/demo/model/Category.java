@@ -18,7 +18,8 @@ public class Category {
     private Long id;
     @Column(name = "category")
     private String title;
-    @OneToMany(mappedBy="category")
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="category_id", nullable=false)
     private List<Type> types = new ArrayList<Type>();
 
     public Category(String title) {

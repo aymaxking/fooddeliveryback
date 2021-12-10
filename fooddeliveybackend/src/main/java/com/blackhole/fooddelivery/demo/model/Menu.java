@@ -19,10 +19,8 @@ public class Menu {
     private Long id;
     @Column(name = "menu")
     String title;
-    @ManyToOne
-    @JoinColumn(name = "place_id", nullable = false)
-    private Place place;
-    @OneToMany(mappedBy="menu")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "menu_id", nullable = false)
     private List<SubMenu> subMenus = new ArrayList<SubMenu>();
 
     public Menu(String title) {

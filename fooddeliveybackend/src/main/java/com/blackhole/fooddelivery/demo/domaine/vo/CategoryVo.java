@@ -23,11 +23,9 @@ public class CategoryVo {
     }
     public void addtype(TypeVo n){
         types.add(n);
-        n.setCategory(this);
     }
     public void removetype(TypeVo o){
         types.remove(o);
-        o.setCategory(null);
     }
     public CategoryVo(String title) {
         this.title = title;

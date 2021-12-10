@@ -18,9 +18,6 @@ public class Type {
     String title;
     @Lob
     byte[] icon;
-    @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
 
     public Type(String title, byte[] icon,Category category) {
         this.title = title;

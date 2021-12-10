@@ -20,9 +20,7 @@ public class SubMenu {
     double price;
     @Lob
     byte[] img;
-    @ManyToOne
-    @JoinColumn(name = "menu_id", nullable = false)
-    private Menu menu;
+
     public SubMenu(String title, double price, byte[] img) {
         this.title = title;
         this.price = price;

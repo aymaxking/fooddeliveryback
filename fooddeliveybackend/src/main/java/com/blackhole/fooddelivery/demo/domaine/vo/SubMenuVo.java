@@ -15,13 +15,11 @@ public class SubMenuVo {
     double price;
     @Lob
     byte[] img;
-    private MenuVo menu;
 
 
-    public SubMenuVo(String title, double price, byte[] img,MenuVo menu) {
+    public SubMenuVo(String title, double price, byte[] img) {
         this.title = title;
         this.price = price;
         this.img = img;
-        this.menu=menu;
     }
 }
