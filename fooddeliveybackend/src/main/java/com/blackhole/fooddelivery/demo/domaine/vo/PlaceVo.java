@@ -11,8 +11,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class PlaceVo {
-    private Long id;
+public class PlaceVo  extends UserVo{
     String title;
     @Lob
     byte[] img;
@@ -20,10 +19,12 @@ public class PlaceVo {
     private List<MenuVo> menus = new ArrayList<MenuVo>();
 
 
-    public PlaceVo(String title, byte[] img, String description) {
+    public PlaceVo(String title, byte[] img, String description,String username,String password) {
         this.title = title;
         this.img = img;
         this.description = description;
+        this.setUsername(username);
+        this.setPassword(password);
     }
     public void addmenu(MenuVo menu){
         menus.add(menu);

@@ -35,6 +35,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 http.authorizeRequests().
               antMatchers("/rest/**").
                permitAll();
+        http.authorizeRequests().
+                antMatchers(HttpMethod.PUT,"/rest/**").
+                permitAll();
     }
 
     @Override

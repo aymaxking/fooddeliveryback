@@ -8,15 +8,12 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
 @Data
 @Table(name = "place")
 @NoArgsConstructor
-public class Place {
-    @Id
-    @GeneratedValue
-    @Column(name = "place_id")
-    private Long id;
+@Entity
+@DiscriminatorValue("P")
+public class Place extends User{
     @Column(name = "place")
     String title;
     @Lob
