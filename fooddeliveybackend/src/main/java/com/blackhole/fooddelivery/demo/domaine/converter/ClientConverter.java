@@ -4,11 +4,12 @@ import com.blackhole.fooddelivery.demo.domaine.vo.ClientVo;
 import com.blackhole.fooddelivery.demo.domaine.vo.DeliveryVo;
 import com.blackhole.fooddelivery.demo.model.Client;
 import com.blackhole.fooddelivery.demo.model.Delivery;
+import com.blackhole.fooddelivery.demo.services.IUserService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientConverter {
+public class ClientConverter  {
     public static ClientVo toVo(Client bo) {
         if (bo == null)
             return null;

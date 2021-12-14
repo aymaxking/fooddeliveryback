@@ -19,4 +19,8 @@ public class UserVo {
         this.password = password;
         this.roles = roles;
     }
+    public UserVo(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 }

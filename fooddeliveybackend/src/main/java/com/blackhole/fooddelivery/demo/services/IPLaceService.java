@@ -14,5 +14,4 @@ public interface IPLaceService {
     List<PlaceVo> findByTitle(String title);
     List<PlaceVo> findAll(int pageId, int size);
     List<PlaceVo> sortBy(String fieldName);
-
 }

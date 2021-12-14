@@ -60,7 +60,7 @@ public class FoodDeliveryApplication implements CommandLineRunner {
         categoryService.save(category2);
         categoryService.save(category3);
 
-        PlaceVo place1 = new PlaceVo("place test",null,"description placetest");
+        PlaceVo place1 = new PlaceVo("place1@gmail.com","place1","place test",null,"description placetest");
 
         MenuVo menuVo = new MenuVo("Burgers");
 
@@ -69,7 +69,6 @@ public class FoodDeliveryApplication implements CommandLineRunner {
         menuVo.addsubmenu(new SubMenuVo("Burger3",19,null));
         menuVo.addsubmenu(new SubMenuVo("Burger3",19,null));
         menuVo.addsubmenu(new SubMenuVo("Burger3",19,null));
-
 
 
         MenuVo menuVo2 = new MenuVo("Drinks");
@@ -81,10 +80,13 @@ public class FoodDeliveryApplication implements CommandLineRunner {
         place1.addmenu(menuVo2);
         place1.addmenu(menuVo);
 
-        pLaceService.save(place1);
+        LocationVo location1 = new LocationVo("av hassan 2 imm 5 rabat");
+        LocationVo location2 = new LocationVo("av mohammed 6 imm safae temara");
 
+        place1.addlocation(location1);
+        place1.addlocation(location2);
 
-
+        userService.savePlace(place1);
 
     }
 }

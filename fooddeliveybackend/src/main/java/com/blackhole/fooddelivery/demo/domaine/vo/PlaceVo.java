@@ -17,9 +17,17 @@ public class PlaceVo  extends UserVo{
     byte[] img;
     String description;
     private List<MenuVo> menus = new ArrayList<MenuVo>();
+    private List<LocationVo> locations = new ArrayList<LocationVo>();
 
 
-    public PlaceVo(String title, byte[] img, String description,String username,String password) {
+    public PlaceVo(String username, String password,  String title, byte[] img, String description) {
+        super(username, password);
+        this.title = title;
+        this.img = img;
+        this.description = description;
+    }
+
+    public PlaceVo(String title, byte[] img, String description, String username, String password) {
         this.title = title;
         this.img = img;
         this.description = description;
@@ -28,6 +36,9 @@ public class PlaceVo  extends UserVo{
     }
     public void addmenu(MenuVo menu){
         menus.add(menu);
+    }
+    public void addlocation(LocationVo location){
+        locations.add(location);
     }
     public void removemenu(MenuVo menu){
         menus.remove(menu);

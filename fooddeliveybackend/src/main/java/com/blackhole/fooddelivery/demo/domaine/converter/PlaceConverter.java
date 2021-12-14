@@ -12,11 +12,13 @@ public class PlaceConverter {
             return null;
         PlaceVo vo = new PlaceVo();
         vo.setId(bo.getId());
+        vo.setUsername(bo.getUsername());
+        vo.setPassword(bo.getPassword());
         vo.setDescription(bo.getDescription());
         vo.setImg(bo.getImg());
         vo.setTitle(bo.getTitle());
         vo.setMenus(MenuConverter.toVoList(bo.getMenus()));
-
+        vo.setLocations(LocationConverter.toVoList(bo.getLocations()));
         return vo;
     }
     public static Place toBo(PlaceVo vo) {
@@ -25,9 +27,12 @@ public class PlaceConverter {
         Place bo = new Place();
         bo.setId(vo.getId());
         bo.setDescription(vo.getDescription());
+        bo.setUsername(vo.getUsername());
+        bo.setPassword(vo.getPassword());
         bo.setImg(vo.getImg());
         bo.setTitle(vo.getTitle());
         bo.setMenus(MenuConverter.toBoList(vo.getMenus()));
+        bo.setLocations(LocationConverter.toBoList(vo.getLocations()));
         return bo;
     }
     public static List<PlaceVo> toVoList(List<Place> boList) {

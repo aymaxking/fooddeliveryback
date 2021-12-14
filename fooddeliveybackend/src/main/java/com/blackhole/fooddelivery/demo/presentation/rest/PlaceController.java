@@ -2,6 +2,7 @@ package com.blackhole.fooddelivery.demo.presentation.rest;
 
 import com.blackhole.fooddelivery.demo.dao.CategoryRepository;
 import com.blackhole.fooddelivery.demo.dao.PlaceRepository;
+import com.blackhole.fooddelivery.demo.domaine.vo.LocationVo;
 import com.blackhole.fooddelivery.demo.domaine.vo.MenuVo;
 import com.blackhole.fooddelivery.demo.domaine.vo.PlaceVo;
 import com.blackhole.fooddelivery.demo.domaine.vo.SubMenuVo;
@@ -84,6 +85,18 @@ public class PlaceController {
         if (VoFound == null)
             return new ResponseEntity<>("place doen't exist", HttpStatus.OK);
         VoFound.addmenu(vo);
+        service.save(VoFound);
+        return new ResponseEntity<>("place is updated successsfully",
+                HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/{id}/addlocation")
+    public ResponseEntity<Object> addlocation(@PathVariable(name = "id") Long VoId,
+                                          @RequestBody LocationVo vo) {
+        PlaceVo VoFound = service.getById(VoId);
+        if (VoFound == null)
+            return new ResponseEntity<>("place doen't exist", HttpStatus.OK);
+        VoFound.addlocation(vo);
         service.save(VoFound);
         return new ResponseEntity<>("place is updated successsfully",
                 HttpStatus.OK);
