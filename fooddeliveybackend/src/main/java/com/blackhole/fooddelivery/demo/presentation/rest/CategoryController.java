@@ -41,8 +41,6 @@ public class CategoryController {
         return new ResponseEntity<>(VoFound, HttpStatus.OK);
     }
 
-
-
     @PostMapping
     public ResponseEntity<Object> create(@Validated @RequestBody CategoryVo Vo) {
         service.save(Vo);
