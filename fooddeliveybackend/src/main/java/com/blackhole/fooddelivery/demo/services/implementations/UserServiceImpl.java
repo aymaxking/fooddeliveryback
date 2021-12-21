@@ -48,6 +48,7 @@ public class UserServiceImpl implements IUserService {
     public UserDetails loadUserByUsername(String username) throws
             UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
+//        if(user==null) throw new UsernameNotFoundException(username);
         boolean enabled = true;
         boolean accountNonExpired = true;
         boolean credentialsNonExpired = true;

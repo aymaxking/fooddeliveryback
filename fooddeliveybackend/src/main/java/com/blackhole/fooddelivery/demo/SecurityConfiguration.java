@@ -1,5 +1,7 @@
 package com.blackhole.fooddelivery.demo;
 
+import com.blackhole.fooddelivery.demo.security.AuthenticationFilter;
+import com.blackhole.fooddelivery.demo.security.SecurityConstants;
 import com.blackhole.fooddelivery.demo.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +34,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-                http.authorizeRequests().
-              antMatchers("/rest/**").
-               permitAll();
+//        http.authorizeRequests().
+//                antMatchers("/rest/**").
+//                permitAll();
+//        http.csrf().disable();
+
+        http
+                .cors().and()
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL)
+                .permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .addFilter(new AuthenticationFilter(authenticationManager()));
     }
 
     @Override
