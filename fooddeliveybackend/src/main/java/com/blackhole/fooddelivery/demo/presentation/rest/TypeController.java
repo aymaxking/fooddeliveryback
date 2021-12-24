@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/rest/types")
+@CrossOrigin("*")
 public class TypeController {
 
     @Autowired

@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/rest/categories")
+@CrossOrigin("*")
 public class CategoryController {
 
     @Autowired
