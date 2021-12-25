@@ -39,6 +39,18 @@ public class CategoryController {
         return service.getAllPagging(p,s);
     }
 
+    @GetMapping(value = "/byTitle/{title}",produces = {
+            MediaType.APPLICATION_JSON_VALUE} )
+    public List<CategoryVo> getAllByTitle(@PathVariable(value="title") String title) {
+        return service.getAllByTitlte(title);
+    }
+
+    @GetMapping(value = "/byTitle/{title}/{p}/{s}",produces = {
+            MediaType.APPLICATION_JSON_VALUE} )
+    public List<CategoryVo> getAllByTitlePagging(@PathVariable(value="title") String title,@PathVariable(value="p") int p,@PathVariable(value="s") int s) {
+        return service.getAllByTitltePagging(title,p,s);
+    }
+
     @GetMapping(value = "/{id}", produces = {
             MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Object> getById(@PathVariable(value = "id") Long VoId) {

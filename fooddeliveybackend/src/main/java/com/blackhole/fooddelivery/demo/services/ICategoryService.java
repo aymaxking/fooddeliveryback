@@ -10,6 +10,8 @@ public interface ICategoryService {
     CategoryVo getById(Long id);
     List<CategoryVo> getAll();
     List<CategoryVo> getAllPagging(int page,int size);
+    List<CategoryVo> getAllByTitlte(String title);
+    List<CategoryVo> getAllByTitltePagging(String title,int page,int size);
     Testclass test();
     void save(CategoryVo category);
     void update(Long id,CategoryVo category);
