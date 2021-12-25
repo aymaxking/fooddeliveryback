@@ -59,6 +59,23 @@ public class FoodDeliveryApplication implements CommandLineRunner {
         categoryService.save(category1);
         categoryService.save(category2);
         categoryService.save(category3);
+        categoryService.save(category3);
+        categoryService.save(category3);
+        categoryService.save(category3);
+        categoryService.save(category3);
+        categoryService.save(category3);
+        categoryService.save(category3);
+        categoryService.save(category3);
+        categoryService.save(category3);
+        categoryService.save(category3);
+        categoryService.save(category3);
+        categoryService.save(category3);
+        categoryService.save(category3);
+        categoryService.save(category3);
+        categoryService.save(category3);
+        categoryService.save(category3);
+        categoryService.save(category3);
+
 
         PlaceVo place1 = new PlaceVo("place1@gmail.com","place1","place test",null,"description placetest");
 

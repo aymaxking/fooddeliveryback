@@ -33,6 +33,12 @@ public class CategoryController {
         return service.getAll();
     }
 
+    @GetMapping(value = "/page/{p}/{s}",produces = {
+            MediaType.APPLICATION_JSON_VALUE} )
+    public List<CategoryVo> getAllPagging(@PathVariable(value="p") int p,@PathVariable(value="s") int s) {
+        return service.getAllPagging(p,s);
+    }
+
     @GetMapping(value = "/{id}", produces = {
             MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Object> getById(@PathVariable(value = "id") Long VoId) {

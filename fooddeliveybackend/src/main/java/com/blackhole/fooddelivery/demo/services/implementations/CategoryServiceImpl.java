@@ -8,6 +8,8 @@ import com.blackhole.fooddelivery.demo.model.Category;
 import com.blackhole.fooddelivery.demo.model.Testclass;
 import com.blackhole.fooddelivery.demo.services.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,6 +41,13 @@ public class CategoryServiceImpl implements ICategoryService {
     @Override
     public List<CategoryVo> getAll() {
         List<Category> list = categoryRepository.findAll();
+        return CategoryConverter.toVoList(list);
+    }
+
+    @Override
+    public List<CategoryVo> getAllPagging(int page, int size) {
+        PageRequest pr = PageRequest.of(page,size);
+        List<Category> list = categoryRepository.findAll(pr).getContent();
         return CategoryConverter.toVoList(list);
     }
 
