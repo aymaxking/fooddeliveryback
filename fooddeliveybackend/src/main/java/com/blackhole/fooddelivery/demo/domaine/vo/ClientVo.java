@@ -15,5 +15,11 @@ public class ClientVo extends UserVo {
     private String CIN;
     private String home_adresse;
 
-
+    public ClientVo(String username, String password, List<RoleVo> roles, String name, String birthday, String CIN, String home_adresse) {
+        super(username, password, roles);
+        this.name = name;
+        this.birthday = birthday;
+        this.CIN = CIN;
+        this.home_adresse = home_adresse;
+    }
 }

@@ -14,4 +14,8 @@ import java.util.List;
 public interface ClientRepository extends JpaRepository<Client, Long> {
     Page<Client> findAll(Pageable pageable);
 
+    List<Client> findByUsernameContainsOrNameContainsOrCINContains(String username, String name,String cin);
+
+    Page<Client> findByUsernameContainsOrNameContainsOrCINContains(String username, String name,String cin,Pageable pageable);
+
 }
