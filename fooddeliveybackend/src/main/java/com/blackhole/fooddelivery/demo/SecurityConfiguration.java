@@ -34,20 +34,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-http.authorizeRequests().
+        http.authorizeRequests().
                 antMatchers("/rest/**").
                 permitAll();
         http.csrf().disable();
 
-        //       http
-        //      .cors().and()
-        //       .csrf().disable()
-        //      .authorizeRequests()
-        //      .antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL)
-        //      .permitAll()
-        //      .anyRequest().authenticated()
-        //      .and()
-        //      .addFilter(new AuthenticationFilter(authenticationManager()));
+//        http
+//                .cors().and()
+//                .csrf().disable()
+//                .authorizeRequests()
+//                .antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL)
+//                .permitAll()
+//                .anyRequest().authenticated()
+//                .and()
+//                .addFilter(new AuthenticationFilter(authenticationManager()));
     }
 
     @Override
