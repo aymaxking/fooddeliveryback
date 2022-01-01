@@ -1,8 +1,11 @@
 package com.blackhole.fooddelivery.demo.services.implementations;
 
 import com.blackhole.fooddelivery.demo.dao.PlaceRepository;
+import com.blackhole.fooddelivery.demo.domaine.converter.DeliveryConverter;
 import com.blackhole.fooddelivery.demo.domaine.converter.PlaceConverter;
+import com.blackhole.fooddelivery.demo.domaine.vo.DeliveryVo;
 import com.blackhole.fooddelivery.demo.domaine.vo.PlaceVo;
+import com.blackhole.fooddelivery.demo.model.Delivery;
 import com.blackhole.fooddelivery.demo.model.Place;
 import com.blackhole.fooddelivery.demo.services.IPLaceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +36,26 @@ public class PlaceServiceImp implements IPLaceService {
         List<Place> list = placeRepository.findAll();
         return PlaceConverter.toVoList(list);
     }
+
+    @Override
+    public List<PlaceVo> getAllPagging(int page, int size) {
+        PageRequest pr = PageRequest.of(page, size);
+        List<Place> list = placeRepository.findAll(pr).getContent();
+        return PlaceConverter.toVoList(list);
+    }
+
+    @Override
+    public List<PlaceVo> getAllByAll(String term) {
+        return PlaceConverter.toVoList(placeRepository.findByUsernameContainsOrTitleContains(term, term));
+    }
+
+    @Override
+    public List<PlaceVo> getAllByAllPagging(String term, int page, int size) {
+        PageRequest pr = PageRequest.of(page, size);
+        List<Place> list = placeRepository.findByUsernameContainsOrTitleContains(term, term, pr).getContent();
+        return PlaceConverter.toVoList(list);
+    }
+
 
     @Override
     public void save(PlaceVo place) {

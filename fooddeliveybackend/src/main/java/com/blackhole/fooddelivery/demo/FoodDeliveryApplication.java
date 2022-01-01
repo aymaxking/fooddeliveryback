@@ -26,6 +26,8 @@ public class FoodDeliveryApplication implements CommandLineRunner {
     @Autowired
     private IClientService clientService;
     @Autowired
+    private IDeliveryService deliveryService;
+    @Autowired
     private ITypeService typeService;
     @Autowired
     private IPLaceService pLaceService;
@@ -91,9 +93,13 @@ public class FoodDeliveryApplication implements CommandLineRunner {
         userService.savePlace(place1);
 
 
-                for(int i=1;i<55;i++)
+                for(int i=1;i<30;i++)
             clientService.save(new ClientVo("client"+i+"@gmail.com","client"+i,null,"client"+i,"15/12/1999",
                     "AB145"+i,"LOT N "+i+" TEMARA"));
+
+        for(int i=1;i<30;i++)
+            deliveryService.save(new DeliveryVo("delivery"+i+"@gmail.com","client"+i,null,"delivery"+i,"15/12/1999",
+                    "AS1255"+i,"LOT N "+i+" TEMARA","31/12/2021"));
 
     }
 }

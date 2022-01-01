@@ -2,10 +2,7 @@ package com.blackhole.fooddelivery.demo.presentation.rest;
 
 import com.blackhole.fooddelivery.demo.dao.CategoryRepository;
 import com.blackhole.fooddelivery.demo.dao.PlaceRepository;
-import com.blackhole.fooddelivery.demo.domaine.vo.LocationVo;
-import com.blackhole.fooddelivery.demo.domaine.vo.MenuVo;
-import com.blackhole.fooddelivery.demo.domaine.vo.PlaceVo;
-import com.blackhole.fooddelivery.demo.domaine.vo.SubMenuVo;
+import com.blackhole.fooddelivery.demo.domaine.vo.*;
 import com.blackhole.fooddelivery.demo.model.Category;
 import com.blackhole.fooddelivery.demo.model.Place;
 import com.blackhole.fooddelivery.demo.services.IPLaceService;
@@ -34,6 +31,24 @@ public class PlaceController {
             MediaType.APPLICATION_JSON_VALUE})
     public List<PlaceVo> getAll() {
         return service.getAll();
+    }
+
+    @GetMapping(value = "/page/{p}/{s}", produces = {
+            MediaType.APPLICATION_JSON_VALUE})
+    public List<PlaceVo> getAllPagging(@PathVariable(value = "p") int p, @PathVariable(value = "s") int s) {
+        return service.getAllPagging(p, s);
+    }
+
+    @GetMapping(value = "/byAll/{term}", produces = {
+            MediaType.APPLICATION_JSON_VALUE})
+    public List<PlaceVo> getAllByTitle(@PathVariable(value = "term") String term) {
+        return service.getAllByAll(term);
+    }
+
+    @GetMapping(value = "/byAll/{term}/{p}/{s}", produces = {
+            MediaType.APPLICATION_JSON_VALUE})
+    public List<PlaceVo> getAllByTitlePagging(@PathVariable(value = "term") String term, @PathVariable(value = "p") int p, @PathVariable(value = "s") int s) {
+        return service.getAllByAllPagging(term, p, s);
     }
 
 
