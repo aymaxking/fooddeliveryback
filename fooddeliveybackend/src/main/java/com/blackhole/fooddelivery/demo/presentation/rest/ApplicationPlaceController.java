@@ -57,8 +57,8 @@ public class ApplicationPlaceController {
     @PostMapping
     public ResponseEntity<Object> create(@Validated @RequestBody ApplicationPlaceVo Vo) {
         service.save(Vo);
-        return new ResponseEntity<>("created successfully",
-                HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
+                HttpStatus.OK);
     }
 
 
@@ -70,11 +70,9 @@ public class ApplicationPlaceController {
             return new ResponseEntity<>("doen't exist", HttpStatus.OK);
         Vo.setId(VoId);
         service.save(Vo);
-        return new ResponseEntity<>("updated successsfully",
+        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
     }
-
-
 
 
     @DeleteMapping(value = "/{id}")
@@ -83,7 +81,7 @@ public class ApplicationPlaceController {
         if (VoFound == null)
             return new ResponseEntity<>("doen't exist", HttpStatus.OK);
         service.delete(VoId);
-        return new ResponseEntity<>("deleted successsfully",
+        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
     }
 }

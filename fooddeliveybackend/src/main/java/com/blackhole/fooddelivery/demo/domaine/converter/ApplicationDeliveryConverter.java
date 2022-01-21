@@ -19,7 +19,11 @@ public class ApplicationDeliveryConverter {
         vo.setDate(bo.getDate());
         vo.setNumber(bo.getNumber());
         vo.setCity(bo.getCity());
+        vo.setBirthday(bo.getBirthday());
         vo.setVehiculeType(bo.getVehiculeType());
+        vo.setEtat(bo.getEtat());
+        vo.setCin(bo.getCin());
+        vo.setAdresse(bo.getAdresse());
         return vo;
     }
     public static ApplicationDelivery toBo(ApplicationDeliveryVo vo) {
@@ -34,7 +38,11 @@ public class ApplicationDeliveryConverter {
         bo.setDate(vo.getDate());
         bo.setNumber(vo.getNumber());
         bo.setCity(vo.getCity());
+        bo.setBirthday(vo.getBirthday());
         bo.setVehiculeType(vo.getVehiculeType());
+        bo.setEtat(vo.getEtat());
+        bo.setCin(vo.getCin());
+        bo.setAdresse(vo.getAdresse());
         return bo;
     }
     public static List<ApplicationDeliveryVo> toVoList(List<ApplicationDelivery> boList) {

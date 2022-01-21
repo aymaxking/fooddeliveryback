@@ -34,6 +34,15 @@ public class PlaceVo  extends UserVo{
         this.setUsername(username);
         this.setPassword(password);
     }
+
+    public PlaceVo(ApplicationPlaceVo vo) {
+        this.title = vo.getName();
+        this.img = null;
+        this.description = vo.getDescription();
+        this.setUsername(vo.getEmail());
+        this.setPassword("password");
+
+    }
     public void addmenu(MenuVo menu){
         menus.add(menu);
     }

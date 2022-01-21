@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 public class ApplicationPlaceVo extends ApplicationVo {
     private String description;
 
-    public ApplicationPlaceVo(String name, String date, String email, String number, String description) {
-        super(name, date, email, number);
+    public ApplicationPlaceVo(String name, String date, String email, String number, String description,String etat) {
+        super(name, date, email, number,etat);
         this.description = description;
     }
 }

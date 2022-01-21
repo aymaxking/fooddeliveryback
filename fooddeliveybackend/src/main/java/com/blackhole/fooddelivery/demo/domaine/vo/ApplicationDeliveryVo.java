@@ -13,11 +13,15 @@ public class ApplicationDeliveryVo extends ApplicationVo {
     private String birthday;
     private String city;
     private String vehiculeType;
+    private String cin;
+    private String adresse;
 
-    public ApplicationDeliveryVo(String name, String date, String email, String number, String birthday, String city, String vehiculeType) {
-        super(name, date, email, number);
+    public ApplicationDeliveryVo(String name, String date, String email, String number, String birthday, String city, String vehiculeType,String etat,String CIN,String adresse) {
+        super(name, date, email, number,etat);
         this.birthday = birthday;
         this.city = city;
         this.vehiculeType = vehiculeType;
+        this.cin=CIN;
+        this.adresse=adresse;
     }
 }

@@ -18,6 +18,7 @@ public class ApplicationConverter {
         vo.setEmail(bo.getEmail());
         vo.setDate(bo.getDate());
         vo.setNumber(bo.getNumber());
+        vo.setEtat(bo.getEtat());
         return vo;
     }
     public static Application toBo(ApplicationVo vo) {
@@ -31,6 +32,7 @@ public class ApplicationConverter {
         bo.setEmail(vo.getEmail());
         bo.setDate(vo.getDate());
         bo.setNumber(vo.getNumber());
+        bo.setEtat(vo.getEtat());
         return bo;
     }
     public static List<ApplicationVo> toVoList(List<Application> boList) {

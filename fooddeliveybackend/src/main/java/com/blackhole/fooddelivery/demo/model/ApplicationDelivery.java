@@ -14,4 +14,6 @@ public class ApplicationDelivery extends Application {
     private String birthday;
     private String city;
     private String vehiculeType;
+    private String cin;
+    private String adresse;
 }

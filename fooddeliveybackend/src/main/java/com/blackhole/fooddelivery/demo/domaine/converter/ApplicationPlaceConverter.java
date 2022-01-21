@@ -19,6 +19,7 @@ public class ApplicationPlaceConverter {
         vo.setDate(bo.getDate());
         vo.setNumber(bo.getNumber());
         vo.setDescription(bo.getDescription());
+        vo.setEtat(bo.getEtat());
         return vo;
     }
     public static ApplicationPlace toBo(ApplicationPlaceVo vo) {
@@ -33,6 +34,7 @@ public class ApplicationPlaceConverter {
         bo.setDate(vo.getDate());
         bo.setNumber(vo.getNumber());
         bo.setDescription(vo.getDescription());
+        bo.setEtat(vo.getEtat());
         return bo;
     }
     public static List<ApplicationPlaceVo> toVoList(List<ApplicationPlace> boList) {

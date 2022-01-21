@@ -61,13 +61,21 @@ public class PlaceController {
         return new ResponseEntity<>(VoFound, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping(value = "l")
     public ResponseEntity<Object> createEmp(@Validated @RequestBody PlaceVo Vo) {
         service.save(Vo);
         return new ResponseEntity<>("place is created successfully",
                 HttpStatus.CREATED);
     }
 
+
+    @PostMapping
+    public ResponseEntity<Object> createPlace( @RequestBody ApplicationPlaceVo Vo) {
+        PlaceVo vo = new PlaceVo(Vo);
+        service.save(vo);
+        return new ResponseEntity<>("place is created successfully",
+                HttpStatus.CREATED);
+    }
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<Object> updateEmp(@PathVariable(name = "id") Long VoId,

@@ -22,6 +22,8 @@ public class CategoryVo {
         this.types = types;
     }
     public void addtype(TypeVo n){
+        if(types==null)
+            types=new ArrayList<TypeVo>();
         types.add(n);
     }
     public void removetype(TypeVo o){

@@ -63,8 +63,8 @@ public class CategoryController {
     @PostMapping
     public ResponseEntity<Object> create(@Validated @RequestBody CategoryVo Vo) {
         service.save(Vo);
-        return new ResponseEntity<>("created successfully",
-                HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
+                HttpStatus.OK);
     }
 
 
@@ -76,7 +76,7 @@ public class CategoryController {
             return new ResponseEntity<>("doen't exist", HttpStatus.OK);
         Vo.setId(VoId);
         service.save(Vo);
-        return new ResponseEntity<>("updated successsfully",
+        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
     }
 
@@ -88,7 +88,7 @@ public class CategoryController {
             return new ResponseEntity<>("category doen't exist", HttpStatus.OK);
         VoFound.addtype(vo);
         service.save(VoFound);
-        return new ResponseEntity<>("category is updated successsfully",
+        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
     }
 
@@ -99,7 +99,7 @@ public class CategoryController {
         if (VoFound == null)
             return new ResponseEntity<>("doen't exist", HttpStatus.OK);
         service.delete(VoId);
-        return new ResponseEntity<>("deleted successsfully",
+        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
     }
 }

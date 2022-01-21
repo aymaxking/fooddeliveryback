@@ -19,4 +19,5 @@ public class Application {
     private String date;
     private String email;
     private String number;
+    private String etat;
 }

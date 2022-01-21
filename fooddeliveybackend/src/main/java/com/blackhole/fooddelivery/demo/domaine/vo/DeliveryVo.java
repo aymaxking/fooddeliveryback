@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Lob;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 @Data
 @NoArgsConstructor
@@ -23,5 +24,14 @@ public class DeliveryVo extends UserVo {
         this.CIN = CIN;
         this.adresse = adresse;
         this.start_date = start_date;
+    }
+    public DeliveryVo(ApplicationDeliveryVo vo) {
+        this.name = vo.getName();
+        this.birthday = vo.getBirthday();
+        this.CIN = vo.getCin();
+        this.adresse=vo.getAdresse();
+        this.start_date=new Date().toString();
+        this.setUsername(vo.getEmail());
+        this.setPassword("password");
     }
 }

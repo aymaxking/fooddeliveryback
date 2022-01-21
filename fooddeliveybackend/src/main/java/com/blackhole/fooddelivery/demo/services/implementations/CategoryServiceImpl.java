@@ -4,6 +4,7 @@ import com.blackhole.fooddelivery.demo.dao.CategoryRepository;
 import com.blackhole.fooddelivery.demo.dao.TypeRepository;
 import com.blackhole.fooddelivery.demo.domaine.converter.CategoryConverter;
 import com.blackhole.fooddelivery.demo.domaine.vo.CategoryVo;
+import com.blackhole.fooddelivery.demo.domaine.vo.TypeVo;
 import com.blackhole.fooddelivery.demo.model.Category;
 import com.blackhole.fooddelivery.demo.model.Testclass;
 import com.blackhole.fooddelivery.demo.services.ICategoryService;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("categoryService")

@@ -1,7 +1,7 @@
 package com.blackhole.fooddelivery.demo.presentation.rest;
 
-import com.blackhole.fooddelivery.demo.domaine.vo.ClientVo;
-import com.blackhole.fooddelivery.demo.domaine.vo.DeliveryVo;
+import com.blackhole.fooddelivery.demo.domaine.vo.*;
+import com.blackhole.fooddelivery.demo.model.ApplicationDelivery;
 import com.blackhole.fooddelivery.demo.services.IDeliveryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -54,9 +54,10 @@ public class DeliveryController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> create(@Validated @RequestBody DeliveryVo Vo) {
-        service.save(Vo);
-        return new ResponseEntity<>("created successfully",
+    public ResponseEntity<Object> createDelivery( @RequestBody ApplicationDeliveryVo Vo) {
+        DeliveryVo vo = new DeliveryVo(Vo);
+        service.save(vo);
+        return new ResponseEntity<>("place is created successfully",
                 HttpStatus.CREATED);
     }
 

@@ -13,11 +13,13 @@ public class ApplicationVo {
     private String date;
     private  String email;
     private String number;
+    private String etat;
 
-    public ApplicationVo(String name, String date, String email, String number) {
+    public ApplicationVo(String name, String date, String email, String number,String etat) {
         this.name = name;
         this.date = date;
         this.email = email;
         this.number = number;
+        this.etat=etat;
     }
 }
