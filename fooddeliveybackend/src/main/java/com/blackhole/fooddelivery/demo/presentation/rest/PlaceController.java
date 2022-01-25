@@ -96,7 +96,7 @@ public class PlaceController {
         if (VoFound == null)
             return new ResponseEntity<>("place doen't exist", HttpStatus.OK);
         service.delete(VoId);
-        return new ResponseEntity<>("place is deleted successsfully",
+        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
     }
 
@@ -109,7 +109,7 @@ public class PlaceController {
             return new ResponseEntity<>("place doen't exist", HttpStatus.OK);
         VoFound.addmenu(vo);
         service.save(VoFound);
-        return new ResponseEntity<>("place is updated successsfully",
+        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
     }
 
@@ -121,7 +121,7 @@ public class PlaceController {
             return new ResponseEntity<>("place doen't exist", HttpStatus.OK);
         VoFound.addlocation(vo);
         service.save(VoFound);
-        return new ResponseEntity<>("place is updated successsfully",
+        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
     }
 
@@ -137,8 +137,8 @@ public class PlaceController {
             return new ResponseEntity<>("menu doen't exist", HttpStatus.OK);
         VoFound2.addsubmenu(vo);
         service.save(VoFound);
-        return new ResponseEntity<>("place is updated successsfully", HttpStatus.OK);
-    }
+        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
+                HttpStatus.OK);    }
 
 
 

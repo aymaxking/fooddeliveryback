@@ -62,7 +62,8 @@ public class CategoryServiceImpl implements ICategoryService {
     public List<CategoryVo> getAllByTitltePagging(String title, int page, int size) {
         PageRequest pr = PageRequest.of(page,size);
         List<Category> list = categoryRepository.findByTitleContains(title,pr).getContent();
-        return CategoryConverter.toVoList(list);    }
+        return CategoryConverter.toVoList(list);
+    }
 
     @Override
     public void save(CategoryVo category) {

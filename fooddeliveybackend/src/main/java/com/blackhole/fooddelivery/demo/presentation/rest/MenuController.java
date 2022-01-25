@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/rest/menus")
+@CrossOrigin("*")
 public class MenuController {
 
     @Autowired
@@ -39,8 +40,8 @@ public class MenuController {
     @PostMapping
     public ResponseEntity<Object> createEmp(@Validated @RequestBody MenuVo Vo) {
         service.save(Vo);
-        return new ResponseEntity<>("created successfully",
-                HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
+                HttpStatus.OK);
     }
 
 
@@ -52,7 +53,7 @@ public class MenuController {
             return new ResponseEntity<>("doen't exist", HttpStatus.OK);
         Vo.setId(VoId);
         service.save(Vo);
-        return new ResponseEntity<>("updated successsfully",
+        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
     }
 
@@ -63,7 +64,7 @@ public class MenuController {
         if (VoFound == null)
             return new ResponseEntity<>("doen't exist", HttpStatus.OK);
         service.delete(VoId);
-        return new ResponseEntity<>("deleted successsfully",
+        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
     }
 }

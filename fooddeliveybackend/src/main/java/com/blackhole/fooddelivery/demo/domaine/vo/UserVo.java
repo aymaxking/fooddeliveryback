@@ -12,12 +12,12 @@ public class UserVo {
     private Long id;
     private String username;
     private String password;
-    private List<RoleVo> roles = new ArrayList<RoleVo>();
+    private String role;
 
-    public UserVo(String username, String password, List<RoleVo> roles) {
+    public UserVo(String username, String password, String role) {
         this.username = username;
         this.password = password;
-        this.roles = roles;
+        this.role = role;
     }
     public UserVo(String username, String password) {
         this.username = username;

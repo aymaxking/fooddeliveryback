@@ -57,7 +57,7 @@ public class UserServiceImpl implements IUserService {
                 org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                 enabled,
                 accountNonExpired, credentialsNonExpired, accountNonLocked,
-                getAuthorities(user.getRoles()));
+                null);
     }
 
     private Collection<? extends GrantedAuthority> getAuthorities(List<Role> roles) {
@@ -73,12 +73,7 @@ public class UserServiceImpl implements IUserService {
     public void save(UserVo userVo) {
         User user = UserConverter.toBo(userVo);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        List<Role> rolesPersist = new ArrayList<>();
-        for (Role role : user.getRoles()) {
-            Role userRole = roleRepository.findByRole(role.getRole()).get(0);
-            rolesPersist.add(userRole);
-        }
-        user.setRoles(rolesPersist);
+        user.setRole(userVo.getRole());
         userRepository.save(user);
     }
 
@@ -86,12 +81,7 @@ public class UserServiceImpl implements IUserService {
     public void savePlace(PlaceVo userVo) {
         Place user = PlaceConverter.toBo(userVo);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        List<Role> rolesPersist = new ArrayList<>();
-        for (Role role : user.getRoles()) {
-            Role userRole = roleRepository.findByRole(role.getRole()).get(0);
-            rolesPersist.add(userRole);
-        }
-        user.setRoles(rolesPersist);
+        user.setRole(userVo.getRole());
         placeRepository.save(user);
     }
     @Override
@@ -99,11 +89,7 @@ public class UserServiceImpl implements IUserService {
         Client user = ClientConverter.toBo(userVo);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         List<Role> rolesPersist = new ArrayList<>();
-        for (Role role : user.getRoles()) {
-            Role userRole = roleRepository.findByRole(role.getRole()).get(0);
-            rolesPersist.add(userRole);
-        }
-        user.setRoles(rolesPersist);
+        user.setRole(userVo.getRole());
         clientRepository.save(user);
     }
 
@@ -112,11 +98,7 @@ public class UserServiceImpl implements IUserService {
         Delivery user = DeliveryConverter.toBo(userVo);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         List<Role> rolesPersist = new ArrayList<>();
-        for (Role role : user.getRoles()) {
-            Role userRole = roleRepository.findByRole(role.getRole()).get(0);
-            rolesPersist.add(userRole);
-        }
-        user.setRoles(rolesPersist);
+        user.setRole(userVo.getRole());
         deliveryRepository.save(user);
     }
     @Override

@@ -21,7 +21,6 @@ public class ClientConverter  {
         vo.setCIN(bo.getCIN());
         vo.setName(bo.getName());
         vo.setBirthday(bo.getBirthday());
-        vo.setRoles(RoleConverter.toVoList(bo.getRoles()));
         return vo;
     }
     public static Client toBo(ClientVo vo) {
@@ -32,7 +31,6 @@ public class ClientConverter  {
             bo.setId(vo.getId());
         bo.setUsername(vo.getUsername());
         bo.setPassword(vo.getPassword());
-        bo.setRoles(RoleConverter.toBoList(vo.getRoles()));
         bo.setHome_adresse(vo.getHome_adresse());
         bo.setCIN(vo.getCIN());
         bo.setName(vo.getName());

@@ -41,9 +41,12 @@ public class PlaceVo  extends UserVo{
         this.description = vo.getDescription();
         this.setUsername(vo.getEmail());
         this.setPassword("password");
+        this.setRole("place");
+
 
     }
     public void addmenu(MenuVo menu){
+        if(menus==null) menus=new ArrayList<MenuVo>();
         menus.add(menu);
     }
     public void addlocation(LocationVo location){

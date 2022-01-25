@@ -1,10 +1,10 @@
 package com.blackhole.fooddelivery.demo.presentation.rest;
 import com.blackhole.fooddelivery.demo.domaine.vo.TypeVo;
 import com.blackhole.fooddelivery.demo.domaine.vo.UserVo;
-import com.blackhole.fooddelivery.demo.model.User;
 import com.blackhole.fooddelivery.demo.services.ITypeService;
 import com.blackhole.fooddelivery.demo.services.IUserService;
 import com.blackhole.fooddelivery.demo.validator.UserValidator;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -55,12 +55,21 @@ public class UserController {
         return new ResponseEntity<>(VoFound, HttpStatus.OK);
     }
 
+    @PutMapping(value = "/login", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Object> getById(@RequestBody UserVo vo ) {
+        UserVo VoFound = service.login(vo);
+        if (VoFound == null)
+            return new ResponseEntity<>("{\"result\":\" notfound\"}",
+                    HttpStatus.OK);
+        return new ResponseEntity<>(VoFound, HttpStatus.OK);
+    }
+
 
     @PostMapping
     public ResponseEntity<Object> create(@Validated @RequestBody UserVo Vo) {
         service.save(Vo);
-        return new ResponseEntity<>("created successfully",
-                HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
+                HttpStatus.OK);
     }
 
 
@@ -72,7 +81,7 @@ public class UserController {
             return new ResponseEntity<>("doen't exist", HttpStatus.OK);
         Vo.setId(VoId);
         service.save(Vo);
-        return new ResponseEntity<>("updated successsfully",
+        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
     }
 
@@ -83,7 +92,7 @@ public class UserController {
         if (VoFound == null)
             return new ResponseEntity<>("doen't exist", HttpStatus.OK);
         service.delete(VoId);
-        return new ResponseEntity<>("deleted successsfully",
+        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
     }
 

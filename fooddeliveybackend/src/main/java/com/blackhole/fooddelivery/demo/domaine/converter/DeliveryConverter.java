@@ -22,7 +22,7 @@ public class DeliveryConverter  {
         vo.setName(bo.getName());
         vo.setStart_date(bo.getStart_date());
         vo.setBirthday(bo.getBirthday());
-        vo.setRoles(RoleConverter.toVoList(bo.getRoles()));
+        vo.setRole(bo.getRole());
         return vo;
     }
     public static Delivery toBo(DeliveryVo vo) {
@@ -33,7 +33,7 @@ public class DeliveryConverter  {
             bo.setId(vo.getId());
         bo.setUsername(vo.getUsername());
         bo.setPassword(vo.getPassword());
-        bo.setRoles(RoleConverter.toBoList(vo.getRoles()));
+        bo.setRole(vo.getRole());
         bo.setAdresse(vo.getAdresse());
         bo.setCIN(vo.getCIN());
         bo.setName(vo.getName());

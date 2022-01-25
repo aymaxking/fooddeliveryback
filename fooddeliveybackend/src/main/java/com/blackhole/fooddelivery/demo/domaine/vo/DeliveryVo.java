@@ -17,8 +17,8 @@ public class DeliveryVo extends UserVo {
     private String start_date;
 
 
-    public DeliveryVo(String username, String password, List<RoleVo> roles, String name, String birthday, String CIN, String adresse, String start_date) {
-        super(username, password, roles);
+    public DeliveryVo(String username, String password, String role, String name, String birthday, String CIN, String adresse, String start_date) {
+        super(username, password, role);
         this.name = name;
         this.birthday = birthday;
         this.CIN = CIN;
@@ -33,5 +33,6 @@ public class DeliveryVo extends UserVo {
         this.start_date=new Date().toString();
         this.setUsername(vo.getEmail());
         this.setPassword("password");
+        this.setRole("delivery");
     }
 }
