@@ -4,6 +4,7 @@ import com.blackhole.fooddelivery.demo.domaine.vo.ApplicationDeliveryVo;
 import com.blackhole.fooddelivery.demo.domaine.vo.ClientVo;
 import com.blackhole.fooddelivery.demo.services.IApplicationDeliveryService;
 import com.blackhole.fooddelivery.demo.services.IClientService;
+import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,7 +13,13 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import pdf.PDFExporter;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -32,22 +39,22 @@ public class ApplicationDeliveryController {
         return service.getAll();
     }
 
-    @GetMapping(value = "/page/{p}/{s}",produces = {
-            MediaType.APPLICATION_JSON_VALUE} )
-    public List<ApplicationDeliveryVo> getAllPagging(@PathVariable(value="p") int p,@PathVariable(value="s") int s) {
-        return service.getAllPagging(p,s);
+    @GetMapping(value = "/page/{p}/{s}", produces = {
+            MediaType.APPLICATION_JSON_VALUE})
+    public List<ApplicationDeliveryVo> getAllPagging(@PathVariable(value = "p") int p, @PathVariable(value = "s") int s) {
+        return service.getAllPagging(p, s);
     }
 
-    @GetMapping(value = "/byAll/{term}",produces = {
-            MediaType.APPLICATION_JSON_VALUE} )
-    public List<ApplicationDeliveryVo> getAllByTitle(@PathVariable(value="term") String term) {
+    @GetMapping(value = "/byAll/{term}", produces = {
+            MediaType.APPLICATION_JSON_VALUE})
+    public List<ApplicationDeliveryVo> getAllByTitle(@PathVariable(value = "term") String term) {
         return service.getAllByAll(term);
     }
 
-    @GetMapping(value = "/byAll/{term}/{p}/{s}",produces = {
-            MediaType.APPLICATION_JSON_VALUE} )
-    public List<ApplicationDeliveryVo> getAllByTitlePagging(@PathVariable(value="term") String term,@PathVariable(value="p") int p,@PathVariable(value="s") int s) {
-        return service.getAllByAllPagging(term,p,s);
+    @GetMapping(value = "/byAll/{term}/{p}/{s}", produces = {
+            MediaType.APPLICATION_JSON_VALUE})
+    public List<ApplicationDeliveryVo> getAllByTitlePagging(@PathVariable(value = "term") String term, @PathVariable(value = "p") int p, @PathVariable(value = "s") int s) {
+        return service.getAllByAllPagging(term, p, s);
     }
 
     @GetMapping(value = "/{id}", produces = {
@@ -69,7 +76,7 @@ public class ApplicationDeliveryController {
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<Object> update(@PathVariable(name = "id") Long VoId,
-                                            @RequestBody ApplicationDeliveryVo Vo) {
+                                         @RequestBody ApplicationDeliveryVo Vo) {
         ApplicationDeliveryVo VoFound = service.getById(VoId);
         if (VoFound == null)
             return new ResponseEntity<>("doen't exist", HttpStatus.OK);
@@ -100,10 +107,22 @@ public class ApplicationDeliveryController {
         message.setTo(Vo.getEmail());
         message.setFrom("aymanehamidat@gmail.com");
         message.setSubject("Reponse");
-        message.setText("You Are Now A delivery ( Email :"+Vo.getEmail()+",Password : Password");
+        message.setText("You Are Now A delivery ( Email :" + Vo.getEmail() + ",Password : Password");
         this.emailSender.send(message);
         return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
+    }
+
+    @GetMapping("/generateContract")
+    public void exportToPDF(HttpServletResponse response, @RequestBody ApplicationDeliveryVo Vo) throws DocumentException, IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=application_" + currentDateTime + ".pdf";
+        response.setHeader(headerKey, headerValue);
+        PDFExporter exporter = new PDFExporter(Vo);
+        exporter.export(response);
     }
 
     @ResponseBody
