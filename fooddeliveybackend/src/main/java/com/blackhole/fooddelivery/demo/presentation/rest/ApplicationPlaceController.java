@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +22,9 @@ public class ApplicationPlaceController {
 
     @Autowired
     IApplicationPlaceService service;
+
+    @Autowired
+    public JavaMailSender emailSender;
 
     @GetMapping(produces = {
             MediaType.APPLICATION_JSON_VALUE})
@@ -57,6 +62,45 @@ public class ApplicationPlaceController {
     @PostMapping
     public ResponseEntity<Object> create(@Validated @RequestBody ApplicationPlaceVo Vo) {
         service.save(Vo);
+        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
+                HttpStatus.OK);
+    }
+
+    @ResponseBody
+    @PutMapping("/accepted")
+    public ResponseEntity<Object> accepted(@RequestBody ApplicationDeliveryVo Vo) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(Vo.getEmail());
+        message.setFrom("aymanehamidat@gmail.com");
+        message.setSubject("Reponse");
+        message.setText("You Are Accepted");
+        this.emailSender.send(message);
+        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
+                HttpStatus.OK);
+    }
+
+    @ResponseBody
+    @PutMapping("/validated")
+    public ResponseEntity<Object> validated(@RequestBody ApplicationDeliveryVo Vo) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(Vo.getEmail());
+        message.setFrom("aymanehamidat@gmail.com");
+        message.setSubject("Reponse");
+        message.setText("You Are Now A Place ( Email :"+Vo.getEmail()+",Password : Password");
+        this.emailSender.send(message);
+        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
+                HttpStatus.OK);
+    }
+
+    @ResponseBody
+    @PutMapping("/refused")
+    public ResponseEntity<Object> refuse(@RequestBody ApplicationDeliveryVo Vo) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(Vo.getEmail());
+        message.setFrom("aymanehamidat@gmail.com");
+        message.setSubject("Reponse");
+        message.setText("You Are Refused");
+        this.emailSender.send(message);
         return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
     }
