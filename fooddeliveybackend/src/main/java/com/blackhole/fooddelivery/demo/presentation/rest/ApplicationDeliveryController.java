@@ -13,7 +13,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import pdf.PDFExporter;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -113,17 +112,6 @@ public class ApplicationDeliveryController {
                 HttpStatus.OK);
     }
 
-    @GetMapping("/generateContract")
-    public void exportToPDF(HttpServletResponse response, @RequestBody ApplicationDeliveryVo Vo) throws DocumentException, IOException {
-        response.setContentType("application/pdf");
-        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
-        String currentDateTime = dateFormatter.format(new Date());
-        String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=application_" + currentDateTime + ".pdf";
-        response.setHeader(headerKey, headerValue);
-        PDFExporter exporter = new PDFExporter(Vo);
-        exporter.export(response);
-    }
 
     @ResponseBody
     @PutMapping("/refused")
