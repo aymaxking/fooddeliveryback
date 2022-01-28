@@ -19,6 +19,7 @@ public class SubMenu {
     String title;
     double price;
     @Lob
+    @Column(name = "img", length = 10000000)
     byte[] img;
 
     public SubMenu(String title, double price, byte[] img) {
