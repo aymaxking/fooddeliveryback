@@ -67,11 +67,24 @@ public class ApplicationPlaceController {
     }
 
     @ResponseBody
-    @PutMapping("/accepted")
-    public ResponseEntity<Object> accepted(@RequestBody ApplicationDeliveryVo Vo) {
+    @PutMapping("/received")
+    public ResponseEntity<Object> applicationtsent(@RequestBody ApplicationPlaceVo Vo) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(Vo.getEmail());
-        message.setFrom("aymanehamidat@gmail.com");
+        message.setFrom("FoodInNoReply@gmail.com");
+        message.setSubject("Application Sent");
+        message.setText("We received your application");
+        this.emailSender.send(message);
+        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
+                HttpStatus.OK);
+    }
+
+    @ResponseBody
+    @PutMapping("/accepted")
+    public ResponseEntity<Object> accepted(@RequestBody ApplicationPlaceVo Vo) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(Vo.getEmail());
+        message.setFrom("FoodInNoReply@gmail.com");
         message.setSubject("Reponse");
         message.setText("You Are Accepted");
         this.emailSender.send(message);
@@ -81,12 +94,12 @@ public class ApplicationPlaceController {
 
     @ResponseBody
     @PutMapping("/validated")
-    public ResponseEntity<Object> validated(@RequestBody ApplicationDeliveryVo Vo) {
+    public ResponseEntity<Object> validated(@RequestBody ApplicationPlaceVo Vo) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(Vo.getEmail());
-        message.setFrom("aymanehamidat@gmail.com");
+        message.setFrom("FoodInNoReply@gmail.com");
         message.setSubject("Reponse");
-        message.setText("You Are Now A Place ( Email :"+Vo.getEmail()+",Password : Password");
+        message.setText("You Are Now A Place ( Email :"+Vo.getEmail()+"");
         this.emailSender.send(message);
         return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
@@ -94,10 +107,10 @@ public class ApplicationPlaceController {
 
     @ResponseBody
     @PutMapping("/refused")
-    public ResponseEntity<Object> refuse(@RequestBody ApplicationDeliveryVo Vo) {
+    public ResponseEntity<Object> refuse(@RequestBody ApplicationPlaceVo Vo) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(Vo.getEmail());
-        message.setFrom("aymanehamidat@gmail.com");
+        message.setFrom("FoodInNoReply@gmail.com");
         message.setSubject("Reponse");
         message.setText("You Are Refused");
         this.emailSender.send(message);

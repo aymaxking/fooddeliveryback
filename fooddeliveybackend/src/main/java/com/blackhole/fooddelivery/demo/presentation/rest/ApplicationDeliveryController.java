@@ -85,13 +85,25 @@ public class ApplicationDeliveryController {
                 HttpStatus.OK);
     }
 
+    @ResponseBody
+    @PutMapping("/received")
+    public ResponseEntity<Object> applicationtsent(@RequestBody ApplicationDeliveryVo Vo) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(Vo.getEmail());
+        message.setFrom("FoodInNoReply@gmail.com");
+        message.setSubject("Application Sent");
+        message.setText("We received your application");
+        this.emailSender.send(message);
+        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
+                HttpStatus.OK);
+    }
 
     @ResponseBody
     @PutMapping("/accepted")
     public ResponseEntity<Object> accepted(@RequestBody ApplicationDeliveryVo Vo) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(Vo.getEmail());
-        message.setFrom("aymanehamidat@gmail.com");
+        message.setFrom("FoodInNoReply@gmail.com");
         message.setSubject("Reponse");
         message.setText("You Are Accepted");
         this.emailSender.send(message);
@@ -104,9 +116,9 @@ public class ApplicationDeliveryController {
     public ResponseEntity<Object> validated(@RequestBody ApplicationDeliveryVo Vo) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(Vo.getEmail());
-        message.setFrom("aymanehamidat@gmail.com");
+        message.setFrom("FoodInNoReply@gmail.com");
         message.setSubject("Reponse");
-        message.setText("You Are Now A delivery ( Email :" + Vo.getEmail() + ",Password : Password");
+        message.setText("You Are Now A delivery" );
         this.emailSender.send(message);
         return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
@@ -118,7 +130,7 @@ public class ApplicationDeliveryController {
     public ResponseEntity<Object> refuse(@RequestBody ApplicationDeliveryVo Vo) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(Vo.getEmail());
-        message.setFrom("aymanehamidat@gmail.com");
+        message.setFrom("FoodInNoReply@gmail.com");
         message.setSubject("Reponse");
         message.setText("You Are Refused");
         this.emailSender.send(message);
