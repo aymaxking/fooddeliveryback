@@ -14,6 +14,7 @@ public class MenuVo {
     private Long id;
     String title;
     private List<SubMenuVo> subMenus = new ArrayList<SubMenuVo>();
+
     public void addsubmenu(SubMenuVo n){
         if(subMenus==null) subMenus=new ArrayList<SubMenuVo>();
         subMenus.add(n);

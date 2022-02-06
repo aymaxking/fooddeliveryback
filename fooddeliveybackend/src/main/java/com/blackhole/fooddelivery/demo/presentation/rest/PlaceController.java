@@ -1,16 +1,9 @@
 package com.blackhole.fooddelivery.demo.presentation.rest;
 
-import com.blackhole.fooddelivery.demo.dao.CategoryRepository;
-import com.blackhole.fooddelivery.demo.dao.PlaceRepository;
 import com.blackhole.fooddelivery.demo.domaine.vo.*;
-import com.blackhole.fooddelivery.demo.model.Category;
-import com.blackhole.fooddelivery.demo.model.Place;
 import com.blackhole.fooddelivery.demo.services.IPLaceService;
-import com.blackhole.fooddelivery.demo.services.implementations.PlaceServiceImp;
+import com.blackhole.fooddelivery.demo.utils.ImageUtility;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +11,13 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import java.awt.*;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.List;
-import java.util.zip.DataFormatException;
-import java.util.zip.Deflater;
-import java.util.zip.Inflater;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping(value = "rest/places")
@@ -68,6 +61,11 @@ public class PlaceController {
         PlaceVo VoFound = service.getById(VoId);
         if (VoFound == null)
             return new ResponseEntity<>("place doen't exist", HttpStatus.OK);
+        if( VoFound.getMenus()!=null)
+            for(MenuVo m : VoFound.getMenus())
+            if(m.getSubMenus()!=null)
+            for(SubMenuVo s : m.getSubMenus())
+                s.setImg(ImageUtility.decompressImage(s.getImg()));
         return new ResponseEntity<>(VoFound, HttpStatus.OK);
     }
 
@@ -85,7 +83,7 @@ public class PlaceController {
         service.save(vo);
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(Vo.getEmail());
-        message.setFrom("aymanehamidat@gmail.com");
+        message.setFrom("FoodInNoReply@gmail.com");
         message.setSubject("Login Data");
         message.setText("Email : " + vo.getUsername() + "    Password:" + vo.getPassword());
         this.emailSender.send(message);
@@ -144,58 +142,20 @@ public class PlaceController {
     @PutMapping(value = "/{id}/menus/{id2}/addsubmenu")
     public ResponseEntity<Object> addsubmenu(@PathVariable(name = "id") Long VoId,
                                              @PathVariable(name = "id2") Long VoId2,
-                                             @RequestBody SubMenuVo vo) {
+                                             @RequestBody SubMenuVo vo) throws UnsupportedEncodingException {
         PlaceVo VoFound = service.getById(VoId);
         if (VoFound == null)
             return new ResponseEntity<>("place doen't exist", HttpStatus.OK);
         MenuVo VoFound2 = VoFound.findmenubyid(VoId2);
         if (VoFound2 == null)
             return new ResponseEntity<>("menu doen't exist", HttpStatus.OK);
-        System.out.println(vo);
-        vo.setImg(compressBytes(vo.getImg()));
+        vo.setImg(ImageUtility.compressImage(vo.getImg()));
         VoFound2.addsubmenu(vo);
         service.save(VoFound);
         return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
     }
 
-    public static byte[] compressBytes(byte[] data) {
-        Deflater deflater = new Deflater();
-        deflater.setInput(data);
-        deflater.finish();
-
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length);
-        byte[] buffer = new byte[1024];
-        while (!deflater.finished()) {
-            int count = deflater.deflate(buffer);
-            outputStream.write(buffer, 0, count);
-        }
-        try {
-            outputStream.close();
-        } catch (IOException e) {
-        }
-        System.out.println("Compressed Image Byte Size - " + outputStream.toByteArray().length);
-
-        return outputStream.toByteArray();
-    }
-
-    // uncompress the image bytes before returning it to the angular application
-    public static byte[] decompressBytes(byte[] data) {
-        Inflater inflater = new Inflater();
-        inflater.setInput(data);
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length);
-        byte[] buffer = new byte[1024];
-        try {
-            while (!inflater.finished()) {
-                int count = inflater.inflate(buffer);
-                outputStream.write(buffer, 0, count);
-            }
-            outputStream.close();
-        } catch (IOException ioe) {
-        } catch (DataFormatException e) {
-        }
-        return outputStream.toByteArray();
-    }
 
 
 }

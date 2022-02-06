@@ -17,6 +17,10 @@ public class SubMenuVo {
     byte[] img;
 
 
+    public void setImg(byte[] img) {
+        this.img = img;
+    }
+
     public SubMenuVo(String title, double price, byte[] img) {
         this.title = title;
         this.price = price;
