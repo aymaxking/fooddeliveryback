@@ -20,4 +20,7 @@ public class Application {
     private String email;
     private String number;
     private String etat;
+    @Lob
+    @Column(name = "picture", length = 100000)
+    byte[] img;
 }

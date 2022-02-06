@@ -24,6 +24,7 @@ public class ApplicationDeliveryConverter {
         vo.setEtat(bo.getEtat());
         vo.setCin(bo.getCin());
         vo.setAdresse(bo.getAdresse());
+        vo.setImg(bo.getImg());
         return vo;
     }
     public static ApplicationDelivery toBo(ApplicationDeliveryVo vo) {
@@ -43,6 +44,7 @@ public class ApplicationDeliveryConverter {
         bo.setEtat(vo.getEtat());
         bo.setCin(vo.getCin());
         bo.setAdresse(vo.getAdresse());
+        bo.setImg(vo.getImg());
         return bo;
     }
     public static List<ApplicationDeliveryVo> toVoList(List<ApplicationDelivery> boList) {

@@ -25,5 +25,9 @@ public class User {
 
     private String role;
 
+    @Lob
+    @Column(name = "picture", length = 100000)
+    byte[] img;
+
 
 }

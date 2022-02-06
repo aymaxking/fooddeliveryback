@@ -61,6 +61,7 @@ public class PlaceController {
         PlaceVo VoFound = service.getById(VoId);
         if (VoFound == null)
             return new ResponseEntity<>("place doen't exist", HttpStatus.OK);
+        VoFound.setImg(ImageUtility.decompressImage(VoFound.getImg()));
         if( VoFound.getMenus()!=null)
             for(MenuVo m : VoFound.getMenus())
             if(m.getSubMenus()!=null)
@@ -80,6 +81,7 @@ public class PlaceController {
     @PostMapping
     public ResponseEntity<Object> createPlace(@RequestBody ApplicationPlaceVo Vo) {
         PlaceVo vo = new PlaceVo(Vo);
+        vo.setImg(vo.getImg());
         service.save(vo);
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(Vo.getEmail());

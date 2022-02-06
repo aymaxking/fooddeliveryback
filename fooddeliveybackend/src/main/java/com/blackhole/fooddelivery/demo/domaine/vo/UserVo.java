@@ -3,6 +3,7 @@ package com.blackhole.fooddelivery.demo.domaine.vo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Lob;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,8 @@ public class UserVo {
     private String username;
     private String password;
     private String role;
+    @Lob
+    byte[] img;
 
     public UserVo(String username, String password, String role) {
         this.username = username;

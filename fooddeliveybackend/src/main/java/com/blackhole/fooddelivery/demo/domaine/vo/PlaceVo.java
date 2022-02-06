@@ -39,9 +39,11 @@ public class PlaceVo  extends UserVo{
         this.title = vo.getName();
         this.img = null;
         this.description = vo.getDescription();
+        this.img=vo.img;
         this.setUsername(vo.getEmail());
         this.setPassword("password");
         this.setRole("place");
+
 
 
     }

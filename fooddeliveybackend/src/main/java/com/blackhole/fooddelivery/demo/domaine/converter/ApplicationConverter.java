@@ -19,6 +19,7 @@ public class ApplicationConverter {
         vo.setDate(bo.getDate());
         vo.setNumber(bo.getNumber());
         vo.setEtat(bo.getEtat());
+        vo.setImg(bo.getImg());
         return vo;
     }
     public static Application toBo(ApplicationVo vo) {
@@ -33,6 +34,7 @@ public class ApplicationConverter {
         bo.setDate(vo.getDate());
         bo.setNumber(vo.getNumber());
         bo.setEtat(vo.getEtat());
+        bo.setImg(vo.getImg());
         return bo;
     }
     public static List<ApplicationVo> toVoList(List<Application> boList) {

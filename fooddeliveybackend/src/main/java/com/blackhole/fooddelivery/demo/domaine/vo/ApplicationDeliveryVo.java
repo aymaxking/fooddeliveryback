@@ -16,8 +16,8 @@ public class ApplicationDeliveryVo extends ApplicationVo {
     private String cin;
     private String adresse;
 
-    public ApplicationDeliveryVo(String name, String date, String email, String number, String birthday, String city, String vehiculeType,String etat,String CIN,String adresse) {
-        super(name, date, email, number,etat);
+    public ApplicationDeliveryVo(String name, String date, String email, String number, String birthday, String city, String vehiculeType,String etat,byte[] img,String CIN,String adresse) {
+        super(name, date, email, number,etat,img);
         this.birthday = birthday;
         this.city = city;
         this.vehiculeType = vehiculeType;

@@ -20,6 +20,7 @@ public class ApplicationPlaceConverter {
         vo.setNumber(bo.getNumber());
         vo.setDescription(bo.getDescription());
         vo.setEtat(bo.getEtat());
+        vo.setImg(bo.getImg());
         return vo;
     }
     public static ApplicationPlace toBo(ApplicationPlaceVo vo) {
@@ -35,6 +36,7 @@ public class ApplicationPlaceConverter {
         bo.setNumber(vo.getNumber());
         bo.setDescription(vo.getDescription());
         bo.setEtat(vo.getEtat());
+        bo.setImg(vo.getImg());
         return bo;
     }
     public static List<ApplicationPlaceVo> toVoList(List<ApplicationPlace> boList) {
