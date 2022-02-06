@@ -17,6 +17,7 @@ public class DeliveryConverter  {
         vo.setId(bo.getId());
         vo.setUsername(bo.getUsername());
         vo.setPassword(bo.getPassword());
+        vo.setImg(bo.getImg());
         vo.setAdresse(bo.getAdresse());
         vo.setCIN(bo.getCIN());
         vo.setName(bo.getName());
@@ -34,6 +35,7 @@ public class DeliveryConverter  {
             bo.setId(vo.getId());
         bo.setUsername(vo.getUsername());
         bo.setPassword(vo.getPassword());
+        bo.setImg(vo.getImg());
         bo.setRole(vo.getRole());
         bo.setAdresse(vo.getAdresse());
         bo.setCIN(vo.getCIN());

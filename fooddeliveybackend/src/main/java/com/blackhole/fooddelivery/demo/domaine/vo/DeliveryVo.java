@@ -29,6 +29,7 @@ public class DeliveryVo extends UserVo {
         this.name = vo.getName();
         this.birthday = vo.getBirthday();
         this.CIN = vo.getCin();
+        this.img=vo.img;
         this.adresse=vo.getAdresse();
         this.start_date=new Date().toString();
         this.setUsername(vo.getEmail());

@@ -56,8 +56,9 @@ public class DeliveryController {
     @PostMapping
     public ResponseEntity<Object> createDelivery( @RequestBody ApplicationDeliveryVo Vo) {
         DeliveryVo vo = new DeliveryVo(Vo);
+        vo.setImg(vo.getImg());
         service.save(vo);
-        return new ResponseEntity<>("place is created successfully",
+        return new ResponseEntity<>("delivery is created successfully",
                 HttpStatus.CREATED);
     }
 
