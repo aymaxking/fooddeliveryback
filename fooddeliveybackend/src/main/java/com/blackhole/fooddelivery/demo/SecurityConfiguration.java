@@ -38,16 +38,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 antMatchers("/rest/**").
                 permitAll();
         http.csrf().disable();
-
-//        http
-//                .cors().and()
-//                .csrf().disable()
-//                .authorizeRequests()
-//                .antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL)
-//                .permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .addFilter(new AuthenticationFilter(authenticationManager()));
     }
 
     @Override

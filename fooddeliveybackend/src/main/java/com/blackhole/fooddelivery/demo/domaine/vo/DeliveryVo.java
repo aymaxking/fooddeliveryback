@@ -1,5 +1,6 @@
 package com.blackhole.fooddelivery.demo.domaine.vo;
 
+import com.blackhole.fooddelivery.demo.FoodDeliveryApplication;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -33,7 +34,7 @@ public class DeliveryVo extends UserVo {
         this.adresse=vo.getAdresse();
         this.start_date=new Date().toString();
         this.setUsername(vo.getEmail());
-        this.setPassword("password");
+        this.setPassword(FoodDeliveryApplication.GenerateRandomPassword());
         this.setRole("delivery");
     }
 }

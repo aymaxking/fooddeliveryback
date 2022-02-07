@@ -99,7 +99,7 @@ public class ApplicationPlaceController {
         message.setTo(Vo.getEmail());
         message.setFrom("FoodInNoReply@gmail.com");
         message.setSubject("Reponse");
-        message.setText("You Are Now A Place ( Email :"+Vo.getEmail()+"");
+        message.setText("Welcome to FoodIn , you are now a new place");
         this.emailSender.send(message);
         return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);

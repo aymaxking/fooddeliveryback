@@ -16,9 +16,9 @@ public class PlaceConverter {
         vo.setPassword(bo.getPassword());
         vo.setDescription(bo.getDescription());
         vo.setImg(bo.getImg());
+        vo.setLocation(bo.getLocation());
         vo.setTitle(bo.getTitle());
         vo.setMenus(MenuConverter.toVoList(bo.getMenus()));
-        vo.setLocations(LocationConverter.toVoList(bo.getLocations()));
         vo.setRole(bo.getRole());
         vo.setImg(bo.getImg());
         return vo;
@@ -33,8 +33,8 @@ public class PlaceConverter {
         bo.setPassword(vo.getPassword());
         bo.setImg(vo.getImg());
         bo.setTitle(vo.getTitle());
+        bo.setLocation(vo.getLocation());
         bo.setMenus(MenuConverter.toBoList(vo.getMenus()));
-        bo.setLocations(LocationConverter.toBoList(vo.getLocations()));
         bo.setRole(vo.getRole());
         bo.setImg(vo.getImg());
         return bo;

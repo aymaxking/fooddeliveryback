@@ -129,17 +129,6 @@ public class PlaceController {
                 HttpStatus.OK);
     }
 
-    @PutMapping(value = "/{id}/addlocation")
-    public ResponseEntity<Object> addlocation(@PathVariable(name = "id") Long VoId,
-                                              @RequestBody LocationVo vo) {
-        PlaceVo VoFound = service.getById(VoId);
-        if (VoFound == null)
-            return new ResponseEntity<>("place doen't exist", HttpStatus.OK);
-        VoFound.addlocation(vo);
-        service.save(VoFound);
-        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
-                HttpStatus.OK);
-    }
 
     @PutMapping(value = "/{id}/menus/{id2}/addsubmenu")
     public ResponseEntity<Object> addsubmenu(@PathVariable(name = "id") Long VoId,

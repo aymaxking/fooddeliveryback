@@ -18,9 +18,11 @@ public class ApplicationPlaceConverter {
         vo.setEmail(bo.getEmail());
         vo.setDate(bo.getDate());
         vo.setNumber(bo.getNumber());
+        vo.setLocation(bo.getLocation());
         vo.setDescription(bo.getDescription());
         vo.setEtat(bo.getEtat());
         vo.setImg(bo.getImg());
+
         return vo;
     }
     public static ApplicationPlace toBo(ApplicationPlaceVo vo) {
@@ -34,6 +36,7 @@ public class ApplicationPlaceConverter {
         bo.setEmail(vo.getEmail());
         bo.setDate(vo.getDate());
         bo.setNumber(vo.getNumber());
+        bo.setLocation(vo.getLocation());
         bo.setDescription(vo.getDescription());
         bo.setEtat(vo.getEtat());
         bo.setImg(vo.getImg());

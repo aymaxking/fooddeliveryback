@@ -12,4 +12,5 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 public class ApplicationPlace extends Application{
     private String description;
+    private String location;
 }

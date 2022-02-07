@@ -16,12 +16,10 @@ import java.util.List;
 public class Place extends User{
     @Column(name = "place")
     String title;
+    String location;
     @Lob
     byte[] img;
     String description;
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="place_id", nullable=false)
-    private List<Location> locations = new ArrayList<Location>();
 
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="place_id", nullable=false)

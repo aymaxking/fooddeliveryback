@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.security.SecureRandom;
 import java.util.Arrays;
 
 @SpringBootApplication
@@ -47,6 +48,19 @@ public class FoodDeliveryApplication implements CommandLineRunner {
     public BCryptPasswordEncoder passwordEncoder() {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return bCryptPasswordEncoder;
+    }
+    public static String GenerateRandomPassword()
+    {
+        final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        SecureRandom random = new SecureRandom();
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < 8; i++)
+        {
+            int randomIndex = random.nextInt(chars.length());
+            sb.append(chars.charAt(randomIndex));
+        }
+        return sb.toString();
     }
     @Override
     public void run(String... args) throws Exception {

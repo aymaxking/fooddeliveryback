@@ -7,5 +7,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ApplicationPlaceVo extends ApplicationVo {
     private String description;
+    private String location;
 
 }
