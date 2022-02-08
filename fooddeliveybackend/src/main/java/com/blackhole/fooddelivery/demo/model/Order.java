@@ -20,10 +20,10 @@ public class Order{
     private String heure;
     private String etat;
     @ManyToOne()
-    @JoinColumn(name="client_id", referencedColumnName = "client_id", insertable = false, updatable = false)
+    @JoinColumn()
     private Client client;
     @ManyToOne()
-    @JoinColumn(name="delivery_id", referencedColumnName = "delivery_id", insertable = false, updatable = false)
+    @JoinColumn()
     private Delivery delivery;
 
     @OneToMany(cascade=CascadeType.ALL)
