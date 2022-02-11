@@ -2,8 +2,10 @@ package com.blackhole.fooddelivery.demo.presentation.rest;
 
 import com.blackhole.fooddelivery.demo.domaine.vo.CategoryVo;
 import com.blackhole.fooddelivery.demo.domaine.vo.MenuVo;
+import com.blackhole.fooddelivery.demo.domaine.vo.SubMenuVo;
 import com.blackhole.fooddelivery.demo.services.ICategoryService;
 import com.blackhole.fooddelivery.demo.services.IMenuService;
+import com.blackhole.fooddelivery.demo.utils.ImageUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -32,6 +34,9 @@ public class MenuController {
             MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Object> getById(@PathVariable(value = "id") Long VoId) {
         MenuVo VoFound = service.getById(VoId);
+        if( VoFound.getSubMenus()!=null)
+            for(SubMenuVo s : VoFound.getSubMenus())
+                        s.setImg(ImageUtility.decompressImage(s.getImg()));
         if (VoFound == null)
             return new ResponseEntity<>("doen't exist", HttpStatus.OK);
         return new ResponseEntity<>(VoFound, HttpStatus.OK);
