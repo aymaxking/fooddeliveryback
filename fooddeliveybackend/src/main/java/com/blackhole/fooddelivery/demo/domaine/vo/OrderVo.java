@@ -21,5 +21,4 @@ public class OrderVo {
     private DeliveryVo delivery;
     private Long idclient;
     private List<SubMenuVo> items = new ArrayList<SubMenuVo>();
-
 }

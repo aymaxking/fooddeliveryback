@@ -136,10 +136,10 @@ public class PlaceController {
                                              @RequestBody SubMenuVo vo) throws UnsupportedEncodingException {
         PlaceVo VoFound = service.getById(VoId);
         if (VoFound == null)
-            return new ResponseEntity<>("place doen't exist", HttpStatus.OK);
+            return new ResponseEntity<>("place doesn't exist", HttpStatus.OK);
         MenuVo VoFound2 = VoFound.findmenubyid(VoId2);
         if (VoFound2 == null)
-            return new ResponseEntity<>("menu doen't exist", HttpStatus.OK);
+            return new ResponseEntity<>("menu doesn't exist", HttpStatus.OK);
         vo.setImg(ImageUtility.compressImage(vo.getImg()));
         VoFound2.addsubmenu(vo);
         service.save(VoFound);

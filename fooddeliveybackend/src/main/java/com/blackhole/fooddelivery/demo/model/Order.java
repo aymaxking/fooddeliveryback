@@ -14,6 +14,7 @@ import java.util.List;
 public class Order{
     @Id
     @GeneratedValue
+    @Column(name = "order_id")
     private Long id;
     private String date;
     private String heure;

@@ -19,7 +19,7 @@ public class OrderConverter {
         vo.setClient(ClientConverter.toVo(bo.getClient()));
         vo.setDelivery(DeliveryConverter.toVo(bo.getDelivery()));
         vo.setHeure(bo.getHeure());
-//        vo.setItems(SubMenuConverter.toVoList(bo.getItems()));
+        vo.setItems(SubMenuConverter.toVoList(bo.getItems()));
         return vo;
     }
     public static Order toBo(OrderVo vo) {
@@ -34,7 +34,7 @@ public class OrderConverter {
         bo.setClient(ClientConverter.toBo(vo.getClient()));
         bo.setDelivery(DeliveryConverter.toBo(vo.getDelivery()));
         bo.setHeure(bo.getHeure());
-//        bo.setItems(SubMenuConverter.toBoList(vo.getItems()));
+        bo.setItems(SubMenuConverter.toBoList(vo.getItems()));
         return bo;
     }
     public static List<OrderVo> toVoList(List<Order> boList) {
