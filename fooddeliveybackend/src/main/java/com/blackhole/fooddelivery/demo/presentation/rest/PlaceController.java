@@ -135,6 +135,7 @@ public class PlaceController {
                                              @PathVariable(name = "id2") Long VoId2,
                                              @RequestBody SubMenuVo vo) throws UnsupportedEncodingException {
         PlaceVo VoFound = service.getById(VoId);
+        System.out.println();
         if (VoFound == null)
             return new ResponseEntity<>("place doesn't exist", HttpStatus.OK);
         MenuVo VoFound2 = VoFound.findmenubyid(VoId2);

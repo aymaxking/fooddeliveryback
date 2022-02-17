@@ -12,7 +12,7 @@ import java.util.List;
 
 @NoArgsConstructor
 @Data
-public class OrderVo {
+public class CommandeVo {
     private Long id;
     private String date;
     private String heure;

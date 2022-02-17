@@ -9,12 +9,12 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "order")
+@Table(name = "commande")
 @NoArgsConstructor
-public class Order{
+public class Commande {
     @Id
     @GeneratedValue
-    @Column(name = "order_id")
+    @Column(name = "commande_id")
     private Long id;
     private String date;
     private String heure;
@@ -26,8 +26,7 @@ public class Order{
     @ManyToOne()
     private Delivery delivery;
 
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="order_id", nullable = false)
+    @ManyToMany()
     private List<SubMenu> items = new ArrayList<SubMenu>();
 
 }

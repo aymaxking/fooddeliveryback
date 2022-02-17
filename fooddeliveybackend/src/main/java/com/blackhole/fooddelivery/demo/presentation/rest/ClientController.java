@@ -2,7 +2,6 @@ package com.blackhole.fooddelivery.demo.presentation.rest;
 
 import com.blackhole.fooddelivery.demo.domaine.vo.CategoryVo;
 import com.blackhole.fooddelivery.demo.domaine.vo.ClientVo;
-import com.blackhole.fooddelivery.demo.domaine.vo.OrderVo;
 import com.blackhole.fooddelivery.demo.domaine.vo.TypeVo;
 import com.blackhole.fooddelivery.demo.services.ICategoryService;
 import com.blackhole.fooddelivery.demo.services.IClientService;

@@ -1,10 +1,7 @@
 package com.blackhole.fooddelivery.demo.presentation.rest;
 
-import com.blackhole.fooddelivery.demo.domaine.vo.CategoryVo;
-import com.blackhole.fooddelivery.demo.domaine.vo.OrderVo;
-import com.blackhole.fooddelivery.demo.domaine.vo.TypeVo;
-import com.blackhole.fooddelivery.demo.services.ICategoryService;
-import com.blackhole.fooddelivery.demo.services.IOrderService;
+import com.blackhole.fooddelivery.demo.domaine.vo.CommandeVo;
+import com.blackhole.fooddelivery.demo.services.ICommandeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,20 +14,20 @@ import java.util.List;
 @RestController
 @RequestMapping("/rest/orders")
 @CrossOrigin("*")
-public class OrderController {
+public class CommandeController {
 
     @Autowired
-    IOrderService service;
+    ICommandeService service;
 
     @GetMapping(produces = {
             MediaType.APPLICATION_JSON_VALUE})
-    public List<OrderVo> getAll() {
+    public List<CommandeVo> getAll() {
         return service.getAll();
     }
 
     @GetMapping(value = "/page/{p}/{s}",produces = {
             MediaType.APPLICATION_JSON_VALUE} )
-    public List<OrderVo> getAllPagging(@PathVariable(value="p") int p,@PathVariable(value="s") int s) {
+    public List<CommandeVo> getAllPagging(@PathVariable(value="p") int p, @PathVariable(value="s") int s) {
         return service.getAllPagging(p,s);
     }
 
@@ -39,14 +36,14 @@ public class OrderController {
     @GetMapping(value = "/{id}", produces = {
             MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Object> getById(@PathVariable(value = "id") Long VoId) {
-        OrderVo VoFound = service.getById(VoId);
+        CommandeVo VoFound = service.getById(VoId);
         if (VoFound == null)
             return new ResponseEntity<>("doesn't exist", HttpStatus.OK);
         return new ResponseEntity<>(VoFound, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Object> create(@Validated @RequestBody OrderVo Vo) {
+    public ResponseEntity<Object> create(@Validated @RequestBody CommandeVo Vo) {
         service.save(Vo);
         return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
@@ -55,8 +52,8 @@ public class OrderController {
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<Object> update(@PathVariable(name = "id") Long VoId,
-                                            @RequestBody OrderVo Vo) {
-        OrderVo VoFound = service.getById(VoId);
+                                            @RequestBody CommandeVo Vo) {
+        CommandeVo VoFound = service.getById(VoId);
         if (VoFound == null)
             return new ResponseEntity<>("doen't exist", HttpStatus.OK);
         Vo.setId(VoId);
@@ -69,7 +66,7 @@ public class OrderController {
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Object> delete(@PathVariable(name = "id") Long VoId) {
-        OrderVo VoFound = service.getById(VoId);
+        CommandeVo VoFound = service.getById(VoId);
         if (VoFound == null)
             return new ResponseEntity<>("doen't exist", HttpStatus.OK);
         service.delete(VoId);

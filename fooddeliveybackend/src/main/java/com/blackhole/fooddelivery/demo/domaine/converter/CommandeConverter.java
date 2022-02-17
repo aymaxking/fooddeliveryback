@@ -1,18 +1,16 @@
 package com.blackhole.fooddelivery.demo.domaine.converter;
 
-import com.blackhole.fooddelivery.demo.domaine.vo.ApplicationVo;
-import com.blackhole.fooddelivery.demo.domaine.vo.OrderVo;
-import com.blackhole.fooddelivery.demo.model.Application;
-import com.blackhole.fooddelivery.demo.model.Order;
+import com.blackhole.fooddelivery.demo.domaine.vo.CommandeVo;
+import com.blackhole.fooddelivery.demo.model.Commande;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderConverter {
-    public static OrderVo toVo(Order bo) {
+public class CommandeConverter {
+    public static CommandeVo toVo(Commande bo) {
         if (bo == null)
             return null;
-        OrderVo vo = new OrderVo();
+        CommandeVo vo = new CommandeVo();
         vo.setId(bo.getId());
         vo.setEtat(bo.getEtat());
         vo.setDate(bo.getDate());
@@ -22,10 +20,10 @@ public class OrderConverter {
         vo.setItems(SubMenuConverter.toVoList(bo.getItems()));
         return vo;
     }
-    public static Order toBo(OrderVo vo) {
+    public static Commande toBo(CommandeVo vo) {
         if (vo == null)
             return null;
-        Order bo = new Order();
+        Commande bo = new Commande();
         if (vo.getId() != null)
             bo.setId(vo.getId());
         bo.setId(vo.getId());
@@ -37,21 +35,21 @@ public class OrderConverter {
         bo.setItems(SubMenuConverter.toBoList(vo.getItems()));
         return bo;
     }
-    public static List<OrderVo> toVoList(List<Order> boList) {
+    public static List<CommandeVo> toVoList(List<Commande> boList) {
         if (boList == null || boList.isEmpty())
             return null;
-        List<OrderVo> voList = new ArrayList<>();
-        for (Order order : boList) {
-            voList.add(toVo(order));
+        List<CommandeVo> voList = new ArrayList<>();
+        for (Commande commande : boList) {
+            voList.add(toVo(commande));
         }
         return voList;
     }
-    public static List<Order> toBoList(List<OrderVo> voList) {
+    public static List<Commande> toBoList(List<CommandeVo> voList) {
         if (voList == null || voList.isEmpty())
             return null;
-        List<Order> boList = new ArrayList<>();
-        for (OrderVo orderVo : voList) {
-            boList.add(toBo(orderVo));
+        List<Commande> boList = new ArrayList<>();
+        for (CommandeVo commandeVo : voList) {
+            boList.add(toBo(commandeVo));
         }
         return boList;
     }
