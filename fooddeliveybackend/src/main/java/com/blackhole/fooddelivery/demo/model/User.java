@@ -31,5 +31,4 @@ public class User {
     @Column(name = "picture", length = 100000)
     byte[] img;
 
-
 }
