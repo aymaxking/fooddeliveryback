@@ -23,6 +23,8 @@ public class User {
 
     private String password;
 
+    private String number;
+
     private String role;
 
     @Lob

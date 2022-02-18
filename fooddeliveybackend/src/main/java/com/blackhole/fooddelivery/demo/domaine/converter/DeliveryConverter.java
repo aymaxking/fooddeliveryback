@@ -25,6 +25,7 @@ public class DeliveryConverter  {
         vo.setBirthday(bo.getBirthday());
         vo.setRole(bo.getRole());
         vo.setImg(bo.getImg());
+        vo.setNumber(bo.getNumber());
         return vo;
     }
     public static Delivery toBo(DeliveryVo vo) {
@@ -43,6 +44,7 @@ public class DeliveryConverter  {
         bo.setStart_date(vo.getStart_date());
         bo.setBirthday(vo.getBirthday());
         bo.setImg(vo.getImg());
+        bo.setNumber(vo.getNumber());
         return bo;
     }
     public static List<DeliveryVo> toVoList(List<Delivery> boList) {

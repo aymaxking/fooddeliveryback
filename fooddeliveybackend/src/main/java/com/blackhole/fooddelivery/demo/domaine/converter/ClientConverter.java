@@ -22,6 +22,8 @@ public class ClientConverter  {
         vo.setName(bo.getName());
         vo.setBirthday(bo.getBirthday());
         vo.setImg(bo.getImg());
+        vo.setNumber(bo.getNumber());
+        vo.setRole(bo.getRole());
         return vo;
     }
     public static Client toBo(ClientVo vo) {
@@ -37,6 +39,8 @@ public class ClientConverter  {
         bo.setName(vo.getName());
         bo.setBirthday(vo.getBirthday());
         bo.setImg(vo.getImg());
+        bo.setNumber(vo.getNumber());
+        bo.setRole(vo.getRole());
         return bo;
     }
     public static List<ClientVo> toVoList(List<Client> boList) {

@@ -57,6 +57,7 @@ public class ClientController {
 
     @PostMapping
     public ResponseEntity<Object> create(@Validated @RequestBody ClientVo Vo) {
+        Vo.setRole("client");
         service.save(Vo);
         return new ResponseEntity<>("created successfully",
                 HttpStatus.CREATED);

@@ -21,6 +21,7 @@ public class PlaceConverter {
         vo.setMenus(MenuConverter.toVoList(bo.getMenus()));
         vo.setRole(bo.getRole());
         vo.setImg(bo.getImg());
+        vo.setNumber(bo.getNumber());
         return vo;
     }
     public static Place toBo(PlaceVo vo) {
@@ -37,6 +38,7 @@ public class PlaceConverter {
         bo.setMenus(MenuConverter.toBoList(vo.getMenus()));
         bo.setRole(vo.getRole());
         bo.setImg(vo.getImg());
+        bo.setNumber(vo.getNumber());
         return bo;
     }
     public static List<PlaceVo> toVoList(List<Place> boList) {

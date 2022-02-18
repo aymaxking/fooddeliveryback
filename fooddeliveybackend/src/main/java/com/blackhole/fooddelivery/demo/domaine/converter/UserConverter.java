@@ -16,6 +16,7 @@ public class UserConverter {
         vo.setPassword(bo.getPassword());
         vo.setRole(bo.getRole());
         vo.setImg(bo.getImg());
+        vo.setNumber(bo.getNumber());
         return vo;
     }
     public static User toBo(UserVo vo) {
@@ -28,6 +29,7 @@ public class UserConverter {
         bo.setPassword(vo.getPassword());
         bo.setRole(vo.getRole());
         bo.setImg(vo.getImg());
+        bo.setNumber(vo.getNumber());
         return bo;
     }
     public static List<UserVo> toVoList(List<User> boList) {
