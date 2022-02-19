@@ -17,8 +17,20 @@ public class CommandeVo {
     private String date;
     private String heure;
     private String etat;
+    private double total;
     private ClientVo client;
     private DeliveryVo delivery;
     private Long idclient;
     private List<SubMenuVo> items = new ArrayList<SubMenuVo>();
+
+
+
+    public double getTotal() {
+        double t = 0;
+        if(items!=null)
+        for(SubMenuVo item : items){
+            t=item.getPrice();
+        }
+        return t;
+    }
 }

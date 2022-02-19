@@ -3,6 +3,7 @@ package com.blackhole.fooddelivery.demo.services.implementations;
 import com.blackhole.fooddelivery.demo.dao.CommandeRepository;
 import com.blackhole.fooddelivery.demo.domaine.converter.CommandeConverter;
 import com.blackhole.fooddelivery.demo.domaine.vo.CommandeVo;
+import com.blackhole.fooddelivery.demo.domaine.vo.SubMenuVo;
 import com.blackhole.fooddelivery.demo.model.Commande;
 import com.blackhole.fooddelivery.demo.services.IClientService;
 import com.blackhole.fooddelivery.demo.services.ICommandeService;
@@ -11,6 +12,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service("orderService")
@@ -50,6 +55,9 @@ public class CommandeServiceImpl implements ICommandeService {
     @Override
     public void save(CommandeVo order) {
         order.setClient(clientService.getById(order.getIdclient()));
+        order.setDate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+        order.setHeure(new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()));
+        order.setEtat("En attente du paiement");
         commandeRepository.save(CommandeConverter.toBo(order));
     }
 

@@ -27,6 +27,12 @@ public class Commande {
     private Delivery delivery;
 
     @ManyToMany()
+    @JoinTable(name = "commande_subMenu",
+            joinColumns = { @JoinColumn(name = "commande_id") },
+            inverseJoinColumns = { @JoinColumn(name = "subMenu_id") })
     private List<SubMenu> items = new ArrayList<SubMenu>();
+
+
+
 
 }

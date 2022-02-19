@@ -31,7 +31,7 @@ public class CommandeConverter {
         bo.setDate(vo.getDate());
         bo.setClient(ClientConverter.toBo(vo.getClient()));
         bo.setDelivery(DeliveryConverter.toBo(vo.getDelivery()));
-        bo.setHeure(bo.getHeure());
+        bo.setHeure(vo.getHeure());
         bo.setItems(SubMenuConverter.toBoList(vo.getItems()));
         return bo;
     }
