@@ -17,6 +17,8 @@ public class CommandeConverter {
         vo.setClient(ClientConverter.toVo(bo.getClient()));
         vo.setDelivery(DeliveryConverter.toVo(bo.getDelivery()));
         vo.setHeure(bo.getHeure());
+        vo.setIddelivery(bo.getIddelivery());
+        vo.setIdclient(bo.getIdclient());
         vo.setItems(SubMenuConverter.toVoList(bo.getItems()));
         return vo;
     }
@@ -32,6 +34,8 @@ public class CommandeConverter {
         bo.setClient(ClientConverter.toBo(vo.getClient()));
         bo.setDelivery(DeliveryConverter.toBo(vo.getDelivery()));
         bo.setHeure(vo.getHeure());
+        bo.setIddelivery(vo.getIddelivery());
+        bo.setIdclient(vo.getIdclient());
         bo.setItems(SubMenuConverter.toBoList(vo.getItems()));
         return bo;
     }

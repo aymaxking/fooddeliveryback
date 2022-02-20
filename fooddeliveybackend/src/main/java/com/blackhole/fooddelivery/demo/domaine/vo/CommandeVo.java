@@ -21,6 +21,7 @@ public class CommandeVo {
     private ClientVo client;
     private DeliveryVo delivery;
     private Long idclient;
+    private Long iddelivery;
     private List<SubMenuVo> items = new ArrayList<SubMenuVo>();
 
 

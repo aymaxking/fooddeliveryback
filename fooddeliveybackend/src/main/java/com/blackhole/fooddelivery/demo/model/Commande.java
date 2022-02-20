@@ -19,7 +19,8 @@ public class Commande {
     private String date;
     private String heure;
     private String etat;
-
+    private Long idclient;
+    private Long iddelivery;
     @ManyToOne()
     private Client client;
 

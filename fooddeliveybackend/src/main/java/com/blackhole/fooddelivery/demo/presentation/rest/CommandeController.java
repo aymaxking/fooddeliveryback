@@ -42,6 +42,18 @@ public class CommandeController {
         return new ResponseEntity<>(VoFound, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/byClient/{id}", produces = {
+            MediaType.APPLICATION_JSON_VALUE})
+    public List<CommandeVo> getByClient(@PathVariable(value = "id") Long VoId) {
+        return service.getByClient(VoId);
+    }
+
+    @GetMapping(value = "/byDelivery/{id}", produces = {
+            MediaType.APPLICATION_JSON_VALUE})
+    public List<CommandeVo> getByDelivery(@PathVariable(value = "id") Long VoId) {
+        return service.getByDelivery(VoId);
+    }
+
     @PostMapping
     public ResponseEntity<Object> create(@Validated @RequestBody CommandeVo Vo) {
         service.save(Vo);

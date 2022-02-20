@@ -32,6 +32,7 @@ public class SubMenuController {
             MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Object> getById(@PathVariable(value = "id") Long VoId) {
         SubMenuVo VoFound = service.getById(VoId);
+        VoFound.setImg(ImageUtility.decompressImage(VoFound.getImg()));
         if (VoFound == null)
             return new ResponseEntity<>("doen't exist", HttpStatus.OK);
         return new ResponseEntity<>(VoFound, HttpStatus.OK);

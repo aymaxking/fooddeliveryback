@@ -35,6 +35,15 @@ public class CommandeServiceImpl implements ICommandeService {
         return CommandeConverter.toVo(commandeRepository.getById(id));
     }
 
+    @Override
+    public List<CommandeVo> getByClient(Long id) {
+        List<Commande> list = commandeRepository.findAllByIdclient(id);
+        return CommandeConverter.toVoList(list);    }
+
+    @Override
+    public List<CommandeVo> getByDelivery(Long id) {
+        List<Commande> list = commandeRepository.findAllByIddelivery(id);
+        return CommandeConverter.toVoList(list);    }
 
 
     @Override
