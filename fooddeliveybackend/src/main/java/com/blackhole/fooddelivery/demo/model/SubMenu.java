@@ -22,6 +22,8 @@ public class SubMenu {
     @Column(name = "picture", length = 100000)
     byte[] img;
 
+
+
     public SubMenu(String title, double price, byte[] img) {
         this.title = title;
         this.price = price;

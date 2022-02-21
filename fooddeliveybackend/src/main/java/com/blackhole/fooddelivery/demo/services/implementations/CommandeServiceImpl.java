@@ -40,22 +40,17 @@ public class CommandeServiceImpl implements ICommandeService {
     @Override
     public List<CommandeVo> getByClient(Long id) {
         List<Commande> list = commandeRepository.findAllByIdclient(id);
-        for (Commande c : list) {
-            for (SubMenu i : c.getItems()) {
-                i.setImg(ImageUtility.decompressImage(i.getImg()));
-            }
-        }
+//        for (Commande c : list) {
+//            for (SubMenu i : c.getItems()) {
+//                i.setImg(ImageUtility.decompressImage(i.getImg()));
+//            }
+//        }
         return CommandeConverter.toVoList(list);
     }
 
     @Override
     public List<CommandeVo> getByDelivery(Long id) {
         List<Commande> list = commandeRepository.findAllByIddelivery(id);
-        for (Commande c : list) {
-            for (SubMenu i : c.getItems()) {
-                i.setImg(ImageUtility.decompressImage(i.getImg()));
-            }
-        }
         return CommandeConverter.toVoList(list);
     }
 
