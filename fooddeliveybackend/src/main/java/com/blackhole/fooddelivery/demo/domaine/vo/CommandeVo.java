@@ -30,7 +30,7 @@ public class CommandeVo {
         double t = 0;
         if(items!=null)
         for(SubMenuVo item : items){
-            t=item.getPrice();
+            t+=item.getPrice();
         }
         return t;
     }

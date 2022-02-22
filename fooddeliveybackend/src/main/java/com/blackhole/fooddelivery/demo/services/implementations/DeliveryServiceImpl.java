@@ -35,6 +35,11 @@ public class DeliveryServiceImpl implements IDeliveryService {
         return DeliveryConverter.toVo(deliveryRepository.getById(id));
     }
 
+    @Override
+    public DeliveryVo getDispo() {
+        return  DeliveryConverter.toVo(deliveryRepository.findAll().get(0));
+    }
+
 
     @Override
     public List<DeliveryVo> getAll() {

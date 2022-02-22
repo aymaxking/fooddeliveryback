@@ -1,5 +1,6 @@
 package com.blackhole.fooddelivery.demo.model;
 
+import com.blackhole.fooddelivery.demo.utils.ImageUtility;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class SubMenu {
     @Lob
     @Column(name = "picture", length = 100000)
     byte[] img;
+
 
 
 

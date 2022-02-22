@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface IDeliveryService {
     DeliveryVo getById(Long id);
+    DeliveryVo getDispo();
     List<DeliveryVo> getAll();
     List<DeliveryVo> getAllPagging(int page,int size);
     List<DeliveryVo> getAllByAll(String term);

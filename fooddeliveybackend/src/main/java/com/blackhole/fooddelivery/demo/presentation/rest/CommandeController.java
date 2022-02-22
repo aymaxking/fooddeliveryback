@@ -30,6 +30,18 @@ public class CommandeController {
     public List<CommandeVo> getAllPagging(@PathVariable(value="p") int p, @PathVariable(value="s") int s) {
         return service.getAllPagging(p,s);
     }
+    @GetMapping(value = "/place/{id}",produces = {
+            MediaType.APPLICATION_JSON_VALUE})
+    public List<CommandeVo> getAllPlace(@PathVariable(value = "id") Long id) {
+        return service.getAllPlace(id);
+    }
+
+    @GetMapping(value = "/place/{id}/page/{p}/{s}",produces = {
+            MediaType.APPLICATION_JSON_VALUE} )
+    public List<CommandeVo> getAllPaggingPlace(@PathVariable(value="p") int p, @PathVariable(value="s") int s,@PathVariable(value = "id") Long id) {
+        return service.getAllPaggingPlace(p,s,id);
+    }
+
 
 
 

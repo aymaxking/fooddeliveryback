@@ -30,5 +30,14 @@ public class Commande {
     @ManyToMany()
     private List<SubMenu> items = new ArrayList<SubMenu>();
 
-
+    public Commande(Commande c) {
+        this.date=c.date;
+        this.heure=c.heure;
+        this.etat=c.etat;
+        this.client=c.client;
+        this.delivery=c.delivery;
+        this.idclient=c.idclient;
+        this.iddelivery=c.iddelivery;
+        this.items=new ArrayList<SubMenu>();
+    }
 }
