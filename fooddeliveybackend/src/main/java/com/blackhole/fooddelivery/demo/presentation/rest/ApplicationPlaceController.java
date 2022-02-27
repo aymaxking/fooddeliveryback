@@ -1,18 +1,24 @@
 package com.blackhole.fooddelivery.demo.presentation.rest;
 
+import com.blackhole.fooddelivery.demo.EmailContent;
 import com.blackhole.fooddelivery.demo.domaine.vo.ApplicationDeliveryVo;
 import com.blackhole.fooddelivery.demo.domaine.vo.ApplicationPlaceVo;
 import com.blackhole.fooddelivery.demo.services.IApplicationDeliveryService;
 import com.blackhole.fooddelivery.demo.services.IApplicationPlaceService;
+import com.blackhole.fooddelivery.demo.services.IMailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @RestController
@@ -22,9 +28,8 @@ public class ApplicationPlaceController {
 
     @Autowired
     IApplicationPlaceService service;
-
     @Autowired
-    public JavaMailSender emailSender;
+    IMailService mailService;
 
     @GetMapping(produces = {
             MediaType.APPLICATION_JSON_VALUE})
@@ -68,26 +73,17 @@ public class ApplicationPlaceController {
 
     @ResponseBody
     @PutMapping("/received")
-    public ResponseEntity<Object> applicationtsent(@RequestBody ApplicationPlaceVo Vo) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(Vo.getEmail());
-        message.setFrom("FoodInNoReply@gmail.com");
-        message.setSubject("Application Sent");
-        message.setText("We received your application");
-        this.emailSender.send(message);
+    public ResponseEntity<Object> applicationtsent(@RequestBody ApplicationPlaceVo Vo) throws MessagingException {
+          mailService.sendEmail(Vo.getEmail(),"Email Verification", EmailContent.emailVerification);
         return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
+
     }
 
     @ResponseBody
     @PutMapping("/accepted")
     public ResponseEntity<Object> accepted(@RequestBody ApplicationPlaceVo Vo) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(Vo.getEmail());
-        message.setFrom("FoodInNoReply@gmail.com");
-        message.setSubject("Reponse");
-        message.setText("You Are Accepted");
-        this.emailSender.send(message);
+        mailService.sendEmail(Vo.getEmail(),"Congratulations", EmailContent.emailAccepted);
         return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
     }
@@ -95,12 +91,7 @@ public class ApplicationPlaceController {
     @ResponseBody
     @PutMapping("/validated")
     public ResponseEntity<Object> validated(@RequestBody ApplicationPlaceVo Vo) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(Vo.getEmail());
-        message.setFrom("FoodInNoReply@gmail.com");
-        message.setSubject("Reponse");
-        message.setText("Welcome to FoodIn , you are now a new place");
-        this.emailSender.send(message);
+
         return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
     }
@@ -108,12 +99,7 @@ public class ApplicationPlaceController {
     @ResponseBody
     @PutMapping("/refused")
     public ResponseEntity<Object> refuse(@RequestBody ApplicationPlaceVo Vo) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(Vo.getEmail());
-        message.setFrom("FoodInNoReply@gmail.com");
-        message.setSubject("Reponse");
-        message.setText("You Are Refused");
-        this.emailSender.send(message);
+
         return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
     }
