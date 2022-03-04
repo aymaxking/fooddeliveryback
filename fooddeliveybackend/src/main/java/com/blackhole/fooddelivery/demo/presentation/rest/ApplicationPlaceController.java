@@ -74,6 +74,7 @@ public class ApplicationPlaceController {
     @ResponseBody
     @PutMapping("/received")
     public ResponseEntity<Object> applicationtsent(@RequestBody ApplicationPlaceVo Vo) throws MessagingException {
+        EmailContent.name=Vo.getName();
           mailService.sendEmail(Vo.getEmail(),"Email Verification", EmailContent.emailVerification);
         return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
@@ -83,6 +84,7 @@ public class ApplicationPlaceController {
     @ResponseBody
     @PutMapping("/accepted")
     public ResponseEntity<Object> accepted(@RequestBody ApplicationPlaceVo Vo) {
+        EmailContent.name=Vo.getName();
         mailService.sendEmail(Vo.getEmail(),"Congratulations", EmailContent.emailAccepted);
         return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
@@ -91,7 +93,7 @@ public class ApplicationPlaceController {
     @ResponseBody
     @PutMapping("/validated")
     public ResponseEntity<Object> validated(@RequestBody ApplicationPlaceVo Vo) {
-
+        EmailContent.name=Vo.getName();
         return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
     }
@@ -99,6 +101,7 @@ public class ApplicationPlaceController {
     @ResponseBody
     @PutMapping("/refused")
     public ResponseEntity<Object> refuse(@RequestBody ApplicationPlaceVo Vo) {
+        EmailContent.name=Vo.getName();
 
         return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
