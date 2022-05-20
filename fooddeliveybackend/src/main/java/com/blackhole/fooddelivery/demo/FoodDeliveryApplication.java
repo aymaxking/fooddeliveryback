@@ -39,6 +39,7 @@ public class FoodDeliveryApplication implements CommandLineRunner {
 
 
 
+
     public static void main(String[] args) {
         SpringApplication.run(FoodDeliveryApplication.class, args);
     }
@@ -49,6 +50,7 @@ public class FoodDeliveryApplication implements CommandLineRunner {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return bCryptPasswordEncoder;
     }
+
     public static String GenerateRandomPassword()
     {
         final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -64,6 +66,6 @@ public class FoodDeliveryApplication implements CommandLineRunner {
     }
     @Override
     public void run(String... args) throws Exception {
-
+//     userService.save(new UserVo("adminFoodIn@gmail.com","admin","admin"));
     }
 }
