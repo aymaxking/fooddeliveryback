@@ -3,9 +3,11 @@ package com.blackhole.fooddelivery.demo.presentation.rest;
 import com.blackhole.fooddelivery.demo.EmailContent;
 import com.blackhole.fooddelivery.demo.domaine.vo.ApplicationDeliveryVo;
 import com.blackhole.fooddelivery.demo.domaine.vo.ApplicationPlaceVo;
+import com.blackhole.fooddelivery.demo.domaine.vo.UserVo;
 import com.blackhole.fooddelivery.demo.services.IApplicationDeliveryService;
 import com.blackhole.fooddelivery.demo.services.IApplicationPlaceService;
 import com.blackhole.fooddelivery.demo.services.IMailService;
+import com.blackhole.fooddelivery.demo.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -28,6 +30,9 @@ public class ApplicationPlaceController {
 
     @Autowired
     IApplicationPlaceService service;
+
+    @Autowired
+    IUserService serviceUser;
     @Autowired
     IMailService mailService;
 
@@ -75,7 +80,7 @@ public class ApplicationPlaceController {
     @PutMapping("/received")
     public ResponseEntity<Object> applicationtsent(@RequestBody ApplicationPlaceVo Vo) throws MessagingException {
         EmailContent.name=Vo.getName();
-          mailService.sendEmail(Vo.getEmail(),"Email Verification", EmailContent.emailVerification);
+          mailService.sendEmail(Vo.getEmail(),"Confirmation", EmailContent.emailVerification);
         return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
 
@@ -90,19 +95,12 @@ public class ApplicationPlaceController {
                 HttpStatus.OK);
     }
 
-    @ResponseBody
-    @PutMapping("/validated")
-    public ResponseEntity<Object> validated(@RequestBody ApplicationPlaceVo Vo) {
-        EmailContent.name=Vo.getName();
-        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
-                HttpStatus.OK);
-    }
 
     @ResponseBody
     @PutMapping("/refused")
     public ResponseEntity<Object> refuse(@RequestBody ApplicationPlaceVo Vo) {
         EmailContent.name=Vo.getName();
-
+        mailService.sendEmail(Vo.getEmail(),"Congratulations", EmailContent.emailRefused);
         return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
     }

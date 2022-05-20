@@ -1,9 +1,13 @@
 package com.blackhole.fooddelivery.demo.presentation.rest;
 
+import com.blackhole.fooddelivery.demo.EmailContent;
 import com.blackhole.fooddelivery.demo.domaine.vo.ApplicationDeliveryVo;
+import com.blackhole.fooddelivery.demo.domaine.vo.ApplicationPlaceVo;
 import com.blackhole.fooddelivery.demo.domaine.vo.ClientVo;
 import com.blackhole.fooddelivery.demo.services.IApplicationDeliveryService;
 import com.blackhole.fooddelivery.demo.services.IClientService;
+import com.blackhole.fooddelivery.demo.services.IMailService;
+import com.blackhole.fooddelivery.demo.services.IUserService;
 import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +18,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -30,7 +35,9 @@ public class ApplicationDeliveryController {
     IApplicationDeliveryService service;
 
     @Autowired
-    public JavaMailSender emailSender;
+    IUserService serviceUser;
+    @Autowired
+    IMailService mailService;
 
     @GetMapping(produces = {
             MediaType.APPLICATION_JSON_VALUE})
@@ -87,39 +94,19 @@ public class ApplicationDeliveryController {
 
     @ResponseBody
     @PutMapping("/received")
-    public ResponseEntity<Object> applicationtsent(@RequestBody ApplicationDeliveryVo Vo) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(Vo.getEmail());
-        message.setFrom("FoodInNoReply@gmail.com");
-        message.setSubject("Application Sent");
-        message.setText("We received your application");
-        this.emailSender.send(message);
+    public ResponseEntity<Object> applicationtsent(@RequestBody ApplicationDeliveryVo Vo) throws MessagingException {
+        EmailContent.name=Vo.getName();
+        mailService.sendEmail(Vo.getEmail(),"Confirmation", EmailContent.emailVerification);
         return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
+
     }
 
     @ResponseBody
     @PutMapping("/accepted")
     public ResponseEntity<Object> accepted(@RequestBody ApplicationDeliveryVo Vo) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(Vo.getEmail());
-        message.setFrom("FoodInNoReply@gmail.com");
-        message.setSubject("Reponse");
-        message.setText("You Are Accepted");
-        this.emailSender.send(message);
-        return new ResponseEntity<>("{\"result\":\" successsfully\"}",
-                HttpStatus.OK);
-    }
-
-    @ResponseBody
-    @PutMapping("/validated")
-    public ResponseEntity<Object> validated(@RequestBody ApplicationDeliveryVo Vo) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(Vo.getEmail());
-        message.setFrom("FoodInNoReply@gmail.com");
-        message.setSubject("Reponse");
-        message.setText("You Are Now A delivery" );
-        this.emailSender.send(message);
+        EmailContent.name=Vo.getName();
+        mailService.sendEmail(Vo.getEmail(),"Congratulations", EmailContent.emailAccepted);
         return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
     }
@@ -127,13 +114,9 @@ public class ApplicationDeliveryController {
 
     @ResponseBody
     @PutMapping("/refused")
-    public ResponseEntity<Object> refuse(@RequestBody ApplicationDeliveryVo Vo) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(Vo.getEmail());
-        message.setFrom("FoodInNoReply@gmail.com");
-        message.setSubject("Reponse");
-        message.setText("You Are Refused");
-        this.emailSender.send(message);
+    public ResponseEntity<Object> refuse(@RequestBody ApplicationPlaceVo Vo) {
+        EmailContent.name=Vo.getName();
+        mailService.sendEmail(Vo.getEmail(),"Congratulations", EmailContent.emailRefused);
         return new ResponseEntity<>("{\"result\":\" successsfully\"}",
                 HttpStatus.OK);
     }

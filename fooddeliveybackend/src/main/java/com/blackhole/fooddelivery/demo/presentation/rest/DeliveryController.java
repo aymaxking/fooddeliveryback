@@ -1,8 +1,10 @@
 package com.blackhole.fooddelivery.demo.presentation.rest;
 
+import com.blackhole.fooddelivery.demo.EmailContent;
 import com.blackhole.fooddelivery.demo.domaine.vo.*;
 import com.blackhole.fooddelivery.demo.model.ApplicationDelivery;
 import com.blackhole.fooddelivery.demo.services.IDeliveryService;
+import com.blackhole.fooddelivery.demo.services.IMailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,6 +21,9 @@ public class DeliveryController {
 
     @Autowired
     IDeliveryService service;
+
+    @Autowired
+    IMailService mailService;
 
     @GetMapping(produces = {
             MediaType.APPLICATION_JSON_VALUE})
@@ -58,6 +63,7 @@ public class DeliveryController {
         DeliveryVo vo = new DeliveryVo(Vo);
         vo.setImg(vo.getImg());
         service.save(vo);
+        mailService.sendEmail(Vo.getEmail(),"Congratulations", EmailContent.getEmailValidated(vo.getUsername(),vo.getPassword()));
         return new ResponseEntity<>("delivery is created successfully",
                 HttpStatus.CREATED);
     }

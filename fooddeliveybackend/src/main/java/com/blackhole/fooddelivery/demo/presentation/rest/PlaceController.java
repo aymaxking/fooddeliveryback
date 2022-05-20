@@ -1,6 +1,8 @@
 package com.blackhole.fooddelivery.demo.presentation.rest;
 
+import com.blackhole.fooddelivery.demo.EmailContent;
 import com.blackhole.fooddelivery.demo.domaine.vo.*;
+import com.blackhole.fooddelivery.demo.services.IMailService;
 import com.blackhole.fooddelivery.demo.services.IPLaceService;
 import com.blackhole.fooddelivery.demo.utils.ImageUtility;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class PlaceController {
 
     @Autowired
     IPLaceService service;
+
+    @Autowired
+    IMailService mailService;
 
     @Autowired
     public JavaMailSender emailSender;
@@ -83,15 +88,11 @@ public class PlaceController {
         PlaceVo vo = new PlaceVo(Vo);
         vo.setImg(vo.getImg());
         service.save(vo);
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(Vo.getEmail());
-        message.setFrom("FoodInNoReply@gmail.com");
-        message.setSubject("Login Data");
-        message.setText("Email : " + vo.getUsername() + "    Password:" + vo.getPassword());
-        this.emailSender.send(message);
+        mailService.sendEmail(Vo.getEmail(),"Congratulations", EmailContent.getEmailValidated(vo.getUsername(),vo.getPassword()));
         return new ResponseEntity<>("place is created successfully",
                 HttpStatus.CREATED);
     }
+
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<Object> updateEmp(@PathVariable(name = "id") Long VoId,
