@@ -67,5 +67,6 @@ public class FoodDeliveryApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
      //userService.save(new UserVo("admin@gmail.com","admin","admin"));
+
     }
 }
